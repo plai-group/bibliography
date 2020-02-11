@@ -29,4 +29,4 @@ We just need the final version of your presentations and posters here, preferabl
 * Add _presentation for Presentations
 * Add _poster for posters 
 
-Remember Github maximum repository siz is 100 GB and maximum file size is 100 MB.
+Remember Github maximum repository size is 100 GB and maximum file size is 100 MB.
