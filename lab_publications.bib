@@ -3,11 +3,16 @@
   author={Warrington, A and Naderiparizi, S and Wood, F},
   booktitle={AISTATS},
   year={2020},
-  url={https://openreview.net/forum?id=SJecKyhEKr},
+  url_Link={https://openreview.net/forum?id=SJecKyhEKr},
   url_Paper={https://openreview.net/pdf?id=SJecKyhEKr},
-  keywords = {genomics,privacy,reading-group,security,survey,tutorial},
-  abstract = {With the help of rapidly developing technology, DNA sequencing is becoming less expensive. As a consequence, the research in genomics has gained speed in paving the way to personalized (genomic) medicine, and geneticists need large collections of human genomes to further increase this speed. Furthermore, individuals are using their genomes to learn about their (genetic) predispositions to diseases, their ancestries, and even their (genetic) compatibilities with potential partners. This trend has also caused the launch of health-related websites and online social networks (OSNs), in which individuals share their genomic data (e.g., OpenSNP or 23andMe). On the other hand, genomic data carries much sensitive information about its owner. By analyzing the DNA of an individual, it is now possible to learn about his disease predispositions (e.g., for Alzheimer's or Parkinson's), ancestries, and physical attributes. The threat to genomic privacy is magnified by the fact that a person's genome is correlated to his family members' genomes, thus leading to interdependent privacy risks. This short tutorial will help computer scientists better understand the privacy and security challenges in today's genomic era. We will first highlight the significance of genomic data and the threats for genomic privacy. Then, we will present the high level descriptions of the proposed solutions to protect the privacy of genomic data and we will discuss future research directions. No prerequisite knowledge on biology or genomics is required for the attendees of this proposal. We only require the attendees to have a slight background on cryptography and statistics.},
- 
+  url_Slides = {},
+  keywords = {simulators, smc, autoregressive flow},
+  abstract = {Deterministic models are approximations of reality that are often easier to build and interpret than stochastic alternatives.  
+Unfortunately, as nature is capricious, observational data can never be fully explained by deterministic models in practice.  
+Observation and process noise need to be added to adapt deterministic models to behave stochastically, such that they are capable of explaining and extrapolating from noisy data.
+Adding process noise to deterministic simulators can induce a failure in the simulator resulting in no return value for certain inputs -- a property we describe as ``brittle.''
+We investigate and address the wasted computation that arises from these failures, and the effect of such failures on downstream inference tasks.
+We show that performing inference in this space can be viewed as rejection sampling, and train a conditional normalizing flow as a proposal over noise values such that there is a low probability that the simulator crashes, increasing computational efficiency and inference fidelity for a fixed sample budget when used as the proposal in an approximate inference algorithm.},
 }
 
 @inproceedings{HAR-20a,
