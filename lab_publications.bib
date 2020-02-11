@@ -8,10 +8,10 @@
   url_Slides = {},
   keywords = {simulators, smc, autoregressive flow},
   abstract = {Deterministic models are approximations of reality that are often easier to build and interpret than stochastic alternatives.  
-Unfortunately, as nature is capricious, observational data can never be fully explained by deterministic models in practice. //
-Observation and process noise need to be added to adapt deterministic models to behave stochastically, such that they are capable of explaining and extrapolating from noisy data.//
-Adding process noise to deterministic simulators can induce a failure in the simulator resulting in no return value for certain inputs -- a property we describe as ``brittle.''//
-We investigate and address the wasted computation that arises from these failures, and the effect of such failures on downstream inference tasks.//
+Unfortunately, as nature is capricious, observational data can never be fully explained by deterministic models in practice.
+Observation and process noise need to be added to adapt deterministic models to behave stochastically, such that they are capable of explaining and extrapolating from noisy data.
+Adding process noise to deterministic simulators can induce a failure in the simulator resulting in no return value for certain inputs -- a property we describe as ``brittle.''
+We investigate and address the wasted computation that arises from these failures, and the effect of such failures on downstream inference tasks.
 We show that performing inference in this space can be viewed as rejection sampling, and train a conditional normalizing flow as a proposal over noise values such that there is a low probability that the simulator crashes, increasing computational efficiency and inference fidelity for a fixed sample budget when used as the proposal in an approximate inference algorithm.},
 }
 
@@ -21,9 +21,10 @@ We show that performing inference in this space can be viewed as rejection sampl
   booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
   archiveprefix = {arXiv},
   eprint = {1906.05462},
-  url={https://arxiv.org/abs/1906.05462},
   year={2020},
-  file={https://arxiv.org/pdf/1906.05462.pdf}
+  url_Link={https://arxiv.org/abs/1906.05462},
+  url_Paper={https://arxiv.org/pdf/1906.05462.pdf},
+  url_Slides = {}
 }
 
 @inproceedings{HAR-20b,
