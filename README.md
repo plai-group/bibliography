@@ -1,6 +1,8 @@
 # Group Bibliography
 
-We keep .bib files with the scientific output of the group in this area. 
+We keep .bib files with the scientific output of the group in this area. You can also upload the final version of your presentations and posters in this repository; they will be slowly transitioned to the PLAI Group website.
+
+You will receive a reminder every few months to update the repositories here.
 
 ## Group Publications Bibtex File
 The file group_publications.bib is directly linked to the website and will automatically show your work on the website. This means we need to standardize your entries.
