@@ -15,4 +15,5 @@ For each bibliography entry, in addition to author, title and year, make sure to
 
 For the time being, you can upload your presentations and posters to the relevant folders on the Github repository. Over time, these will be reuploaded to the PLAI website. To keep things simple:
 * Use the same key as the entry key on the Bibtex file.
-* Add _slides for 
+* Add _presentation for Presentations
+* Add _poster for posters 
