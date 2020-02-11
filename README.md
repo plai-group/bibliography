@@ -17,3 +17,5 @@ For the time being, you can upload your presentations and posters to the relevan
 * Use the same key as the entry key on the Bibtex file.
 * Add _presentation for Presentations
 * Add _poster for posters 
+
+For sample entries, check [here](https://bibbase.org/show?bib=http://www.cs.toronto.edu/~fritz/publications/list.bib&theme=dividers).
