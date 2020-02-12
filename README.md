@@ -21,6 +21,7 @@ For each bibliography entry, in addition to author, title and year, make sure to
 * doi is strongly recommended if your work has one.
 * For Arxiv papers, make sure to use archiveprefix = {arXiv}, and eprint = {1906.05462}.
 * For presenations and posters, make sure to include event data: eventtitle = {Forschungswelten 2018}, eventdate  = {2018-04-19/2018-04-20}, venue = {St. Gallen, Switzerland}. Or enter them as InProceedings.
+* Make sure to include both the full name of the Journal/Conference and its abbreviated form.
 * If there is something to point out (say your presentation won an award, etc), make sure to include a note using bibbase_note={}.
 
 Please make sure that you add new entries (recent years) at the top. The file is intentionally ordered by year to help check if we have all published items from each year or not.
