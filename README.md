@@ -8,6 +8,10 @@ You will receive a reminder every few months to update the repositories here.
 The file group_publications.bib is directly linked to the website and will automatically show your work on the website. This means we need to standardize your entries.
 
 For each bibliography entry, in addition to author, title and year, make sure to include:
+* Make sure to select the correct entry type. The script used on the website uses the type to distinguish between entries. Common entry types:
+ * article: For articles published in journals
+ * inproceedings: For conference proceedings
+ * unpublished: Work that is not formally published (say recent work that is underreview and you have posted on Arxiv).
 * A key: The key will be the first three letter of the last name of the lead author plus a two digit code for the year. So a paper published by Frank Wood in 1920 will be coded as "WOO-20". If more than one publication was published by the same person, in the same year, add letters. For example, if our hypothetical Frank Wood had another paper in 1920, it will be coded as "WOO-20a".
 * Links (if available): There are four classes of link fields:
   * url_Link={}: Use this for a link to the website of the work (for example arxiv).
