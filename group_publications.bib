@@ -7,7 +7,7 @@
   year={2020},
   url_Link={https://openreview.net/forum?id=SJecKyhEKr},
   url_Paper={https://openreview.net/pdf?id=SJecKyhEKr},
-  keywords = {simulators, smc, autoregressive flow, D3M},
+  keywords = {simulators, smc, autoregressive flow},
   support = {D3M},
   abstract = {Deterministic models are approximations of reality that are often easier to build and interpret than stochastic alternatives.  
 Unfortunately, as nature is capricious, observational data can never be fully explained by deterministic models in practice.
@@ -22,6 +22,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   author={Harvey, William and Teng, Michael and Wood, Frank},
   booktitle={NeurIPS Workshop on Bayesian Deep Learning},
   year={2019},
+  support = {D3M},
   archiveprefix = {arXiv},
   eprint = {1906.05462},
   url_Link={https://arxiv.org/abs/1906.05462},
@@ -36,6 +37,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   year={2020},
   archiveprefix = {arXiv},
   eprint = {1910.11961},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1910.11961},
   url_Paper={https://arxiv.org/pdf/1910.11961.pdf},
   abstract = {We present a new approach to automatic amortized inference in universal probabilistic programs which improves performance compared to current methods. Our approach is a variation of inference compilation (IC) which leverages deep neural networks to approximate a posterior distribution over latent variables in a probabilistic program. A challenge with existing IC network architectures is that they can fail to model long-range dependencies between latent variables. To address this, we introduce an attention mechanism that attends to the most salient variables previously sampled in the execution of a probabilistic program. We demonstrate that the addition of attention allows the proposal distributions to better match the true posterior, enhancing inference about latent variables in simulators.},
@@ -48,6 +50,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   year={2020},
   archiveprefix = {arXiv},
   eprint = {1910.11950},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1910.11950},
   url_Paper={https://arxiv.org/pdf/1910.11950.pdf},
   abstract = {We present a framework for automatically structuring and training fast, approximate, deep neural surrogates of existing stochastic simulators. Unlike traditional approaches to surrogate modeling, our surrogates retain the interpretable structure of the reference simulators. The particular way we achieve this allows us to replace the reference simulator with the surrogate when undertaking amortized inference in the probabilistic programming sense. The fidelity and speed of our surrogates allow for not only faster "forward" stochastic simulation but also for accurate and substantially faster inference. We support these claims via experiments that involve a commercial composite-materials curing simulator. Employing our surrogate modeling technique makes inference an order of magnitude faster, opening up the possibility of doing simulator-based, non-invasive, just-in-time parts quality testing; in this case inferring safety-critical latent internal temperature profiles of composite materials undergoing curing from surface temperature profile measurements.},
@@ -57,6 +60,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   title={Efficient Inference Amortization in Graphical Models using Structured Continuous Conditional Normalizing Flows},
   author={Weilbach, Christian and Beronov, Boyan and Harvey, William and Wood, Frank},
   booktitle={The 23rd International Conference on Artificial Intelligence and Statistics (AISTATS 2020)},
+  support = {D3M},
   url_Link={https://openreview.net/forum?id=BJlhYknNFS},
   url_Paper={https://openreview.net/pdf?id=BJlhYknNFS},
   abstract = {We introduce a more efficient neural architecture for amortized inference, which combines continuous and conditional normalizing flows using a principled choice of structure. Our gradient flow derives its sparsity pattern from the minimally faithful inverse of its underlying graphical model. We find that this factorization reduces the necessary numbers both of parameters in the neural network and of adaptive integration steps in the ODE solver. Consequently, the throughput at training time and inference time is increased, without decreasing performance in comparison to unconstrained flows. By expressing the structural inversion and the flow construction as compilation passes of a probabilistic programming language, we demonstrate their applicability to the stochastic inversion of realistic models such as convolutional neural networks (CNN).},
@@ -72,6 +76,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   eid = {arXiv:1912.03432},
   archivePrefix = {arXiv},
   eprint = {1912.03432},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1912.03432},
   url_Paper={https://arxiv.org/pdf/1912.03432.pdf},
   abstract={Few-shot learning is a fundamental task in computer vision that carries the promise of alleviating the need for exhaustively labeled data. Most few-shot learning approaches to date have focused on progressively more complex neural feature extractors and classifier adaptation strategies, as well as the refinement of the task definition itself. In this paper, we explore the hypothesis that a simple class-covariance-based distance metric, namely the Mahalanobis distance, adopted into a state of the art few-shot learning approach (CNAPS) can, in and of itself, lead to a significant performance improvement. We also discover that it is possible to learn adaptive feature extractors that allow useful estimation of the high dimensional feature covariances required by this metric from surprisingly few samples. The result of our work is a new "Simple CNAPS" architecture which has up to 9.2% fewer trainable parameters than CNAPS and performs up to 6.1% better than state of the art on the standard few-shot image classification benchmark dataset.}
@@ -84,6 +89,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   year={2019},
   archiveprefix = {arXiv},
   eprint = {1909.09721},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1909.09721},
   url_Paper = {https://arxiv.org/pdf/1909.09721.pdf},
   abstract={Imitation learning is a promising approach to end-to-end training of autonomous vehicle controllers. Typically the driving process with such approaches is entirely automatic and black-box, although in practice it is desirable to control the vehicle through high-level commands, such as telling it which way to go at an intersection. In existing work this has been accomplished by the application of a branched neural architecture, since directly providing the command as an additional input to the controller often results in the command being ignored. In this work we overcome this limitation by learning a disentangled probabilistic latent variable model that generates the steering commands. We achieve faithful command-conditional generation without using a branched architecture and demonstrate improved stability of the controller, applying only a variational objective without any domain-specific adjustments. On top of that, we extend our model with an additional latent variable and augment the dataset to train a controller that is robust to unsafe commands, such as asking it to turn into a wall. The main contribution of this work is a recipe for building controllable imitation driving agents that improves upon multiple aspects of the current state of the art relating to robustness and interpretability.}
@@ -98,6 +104,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   eid = {arXiv:1906.03329},
   archivePrefix = {arXiv},
   eprint = {1906.03329},
+  support = {D3M},
   url_Link={http://papers.nips.cc/paper/9322-sparse-variational-inference-bayesian-coresets-from-scratch},
   url_Paper={http://papers.nips.cc/paper/9322-sparse-variational-inference-bayesian-coresets-from-scratch.pdf},
   url_Poster={https://github.com/plai-group/bibliography/raw/master/presentations_posters/CAM-19.pdf},
@@ -111,6 +118,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   author={Gram-Hansen, B and Schroeder de Witt, C and Zinkov, R and Naderiparizi, S and Scibior, A and Munk, A and Wood, F and Ghadiri, M and Torr, P and Whye Teh, Y and Gunes Baydin, A and Rainforth, T},
   booktitle={2nd Symposium on Advances in Approximate Bayesian Inference (AABI)},
   year={2019},
+  support = {D3M},
   url_Link={https://openreview.net/forum?id=rJeMcy2EtH},
   url_Paper={https://openreview.net/pdf?id=rJeMcy2EtH},
   abstact={We introduce two approaches for conducting efficient Bayesian inference in stochastic simulators containing nested stochastic sub-procedures, i.e., internal procedures for which the density cannot be calculated directly such as rejection sampling loops. The resulting class of simulators are used extensively throughout the sciences and can be interpreted as probabilistic generative models. However, drawing inferences from them poses a substantial challenge due to the inability to evaluate even their unnormalised density, preventing the use of many standard inference procedures like Markov Chain Monte Carlo (MCMC). To address this, we introduce inference algorithms based on a two-step approach that first approximates the conditional densities of the individual sub-procedures, before using these approximations to run MCMC methods on the full program. Because the sub-procedures can be dealt with separately and are lower-dimensional than that of the overall problem, this two-step process allows them to be isolated and thus be tractably dealt with, without placing restrictions on the overall dimensionality of the problem. We demonstrate the utility of our approach on a simple, artificially constructed simulator.}
@@ -122,6 +130,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   year={2019},
   archiveprefix = {arXiv},
   eprint = {1910.09056},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1910.09056},
   url_Paper={https://arxiv.org/pdf/1910.09056.pdf},
   abstract={Existing approaches to amortized inference in probabilistic programs with unbounded loops can produce estimators with infinite variance. An instance of this is importance sampling inference in programs that explicitly include rejection sampling as part of the user-programmed generative procedure. In this paper we develop a new and efficient amortized importance sampling estimator. We prove finite variance of our estimator and empirically demonstrate our method's correctness and efficiency compared to existing alternatives on generative programs containing rejection sampling loops and discuss how to implement our method in a generic probabilistic programming framework.}
@@ -136,6 +145,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   year={2019},
   url_Link={https://arxiv.org/abs/1903.04714},
   url_Paper={https://arxiv.org/pdf/1903.04714.pdf},
+  support = {D3M},
   abstract={We apply recent advances in deep generative modeling to the task of imitation learning from biological agents. Specifically, we apply variations of the variational recurrent neural network model to a multi-agent setting where we learn policies of individual uncoordinated agents acting based on their perceptual inputs and their hidden belief state. We learn stochastic policies for these agents directly from observational data, without constructing a reward function. An inference network learned jointly with the policy allows for efficient inference over the agent's belief state given a sequence of its current perceptual inputs and the prior actions it performed, which lets us extrapolate observed sequences of behavior into the future while maintaining uncertainty estimates over future trajectories. We test our approach on a dataset of flies interacting in a 2D environment, where we demonstrate better predictive performance than existing approaches which learn deterministic policies with recurrent neural networks. We further show that the uncertainty estimates over future trajectories we obtain are well calibrated, which makes them useful for a variety of downstream processing tasks.},
 }
 
@@ -147,6 +157,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   eprint = {1907.00031},
   url_Link={https://arxiv.org/abs/1907.00031},
   url_Paper={https://arxiv.org/pdf/1907.00031.pdf},
+  support = {D3M},
   abstract={We introduce the thermodynamic variational objective (TVO) for learning in both continuous and discrete deep generative models. The TVO arises from a key connection between variational inference and thermodynamic integration that results in a tighter lower bound to the log marginal likelihood than the standard variational variational evidence lower bound (ELBO) while remaining as broadly applicable. We provide a computationally efficient gradient estimator for the TVO that applies to continuous, discrete, and non-reparameterizable distributions and show that the objective functions used in variational inference, variational autoencoders, wake sleep, and inference compilation are all special cases of the TVO. We use the TVO to learn both discrete and continuous deep generative models and empirically demonstrate state of the art model and inference network learning.},
   year={2019}
 }
@@ -158,6 +169,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   booktitle={the International Conference for High Performance Computing, Networking, Storage and Analysis (SC ’19)},
   archiveprefix = {arXiv},
   eprint = {1907.03382},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1907.03382},
   url_Paper={https://arxiv.org/pdf/1907.03382.pdf},
   abstract={Probabilistic programming languages (PPLs) are receiving widespread attention for performing Bayesian inference in complex generative models. However, applications to science remain limited because of the impracticability of rewriting complex scientific simulators in a PPL, the computational cost of inference, and the lack of scalable implementations. To address these, we present a novel PPL framework that couples directly to existing scientific simulators through a cross-platform probabilistic execution protocol and provides Markov chain Monte Carlo (MCMC) and deep-learning-based inference compilation (IC) engines for tractable inference. To guide IC inference, we perform distributed training of a dynamic 3DCNN--LSTM architecture with a PyTorch-MPI-based framework on 1,024 32-core CPU nodes of the Cori supercomputer with a global minibatch size of 128k: achieving a performance of 450 Tflop/s through enhancements to PyTorch. We demonstrate a Large Hadron Collider (LHC) use-case with the C++ Sherpa simulator and achieve the largest-scale posterior inference in a Turing-complete PPL.},
@@ -171,6 +183,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   booktitle={NeurIPS 2019 Workshop Neuro AI homepage},
   archiveprefix = {arXiv},
   eprint = {1907.11075},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1907.11075},
   url_Paper={https://arxiv.org/pdf/1907.11075.pdf},
   abstract={We develop a stochastic whole-brain and body simulator of the nematode roundworm Caenorhabditis elegans (C. elegans) and show that it is sufficiently regularizing to allow imputation of latent membrane potentials from partial calcium fluorescence imaging observations. This is the first attempt we know of to "complete the circle," where an anatomically grounded whole-connectome simulator is used to impute a time-varying "brain" state at single-cell fidelity from covariates that are measurable in practice. The sequential Monte Carlo (SMC) method we employ not only enables imputation of said latent states but also presents a strategy for learning simulator parameters via variational optimization of the noisy model evidence approximation provided by SMC. Our imputation and parameter estimation experiments were conducted on distributed systems using novel implementations of the aforementioned techniques applied to synthetic data of dimension and type representative of that which are measured in laboratories currently.},
@@ -186,6 +199,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   eprint = {1907.08082},
   url_Link={https://arxiv.org/abs/1907.08082},
   url_Paper={https://arxiv.org/pdf/1907.08082.pdf},
+  support = {D3M},
   abstract={Current approaches to amortizing Bayesian inference focus solely on approximating the posterior distribution. Typically, this approximation is, in turn, used to calculate expectations for one or more target functions - a computational pipeline which is inefficient when the target function(s) are known upfront. In this paper, we address this inefficiency by introducing AMCI, a method for amortizing Monte Carlo integration directly. AMCI operates similarly to amortized inference but produces three distinct amortized proposals, each tailored to a different component of the overall expectation calculation. At runtime, samples are produced separately from each amortized proposal, before being combined to an overall estimate of the expectation. We show that while existing approaches are fundamentally limited in the level of accuracy they can achieve, AMCI can theoretically produce arbitrarily small errors for any integrable target function using only a single sample from each proposal at runtime. We further show that it is able to empirically outperform the theoretically optimal self-normalized importance sampler on a number of example problems. Furthermore, AMCI allows not only for amortizing over datasets but also amortizing over target functions.}
 }
 
@@ -197,6 +211,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   year={2019},
   archiveprefix = {arXiv},
   eprint = {1903.02482},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1903.02482},
   url_Paper={https://arxiv.org/pdf/1903.02482.pdf},
   abstract={We develop a new Low-level, First-order Probabilistic Programming Language (LF-PPL) suited for models containing a mix of continuous, discrete, and/or piecewise-continuous variables. The key success of this language and its compilation scheme is in its ability to automatically distinguish parameters the density function is discontinuous with respect to, while further providing runtime checks for boundary crossings. This enables the introduction of new inference engines that are able to exploit gradient information, while remaining efficient for models which are not everywhere differentiable. We demonstrate this ability by incorporating a discontinuous Hamiltonian Monte Carlo (DHMC) inference engine that is able to deliver automated and efficient inference for non-differentiable models. Our system is backed up by a mathematical formalism that ensures that any model expressed in this language has a density with measure zero discontinuities to maintain the validity of the inference engine.}
@@ -209,6 +224,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   booktitle={Proceedings of the conference on Uncertainty in Artificial Intelligence (UAI)},
   archiveprefix = {arXiv},
   eprint = {1805.10469},
+  support = {D3M},
   url_Link={https://arxiv.org/abs/1805.10469},
   url_Paper={https://arxiv.org/pdf/1805.10469.pdf},
   abstract={Stochastic control-flow models (SCFMs) are a class of generative models that involve branching on choices from discrete random variables. Amortized gradient-based learning of SCFMs is challenging as most approaches targeting discrete variables rely on their continuous relaxations---which can be intractable in SCFMs, as branching on relaxations requires evaluating all (exponentially many) branching paths. Tractable alternatives mainly combine REINFORCE with complex control-variate schemes to improve the variance of naive estimators. Here, we revisit the reweighted wake-sleep (RWS) (Bornschein and Bengio, 2015) algorithm, and through extensive evaluations, show that it outperforms current state-of-the-art methods in learning SCFMs. Further, in contrast to the importance weighted autoencoder, we observe that RWS learns better models and inference networks with increasing numbers of particles. Our results suggest that RWS is a competitive, often preferable, alternative for learning SCFMs.}
