@@ -1,3 +1,78 @@
+@inproceedings{WEI-20,
+  title={Structured Conditional Continuous Normalizing Flows for Efficient Amortized Inference in Graphical Models},
+  author={Weilbach, Christian and Beronov, Boyan and Wood, Frank and Harvey, William},
+  booktitle={International Conference on Artificial Intelligence and Statistics},
+  pages={4441--4451},
+  year={2020},
+  url_Link={http://proceedings.mlr.press/v108/weilbach20a.html},
+  url_Paper={http://proceedings.mlr.press/v108/weilbach20a/weilbach20a.pdf},
+  Note={Presented at the 2nd Symposium on Advances in Approximate Bayesian Inference (AABI 2019)},
+ 
+}
+
+@unpublished{HAR-20,
+  title={Near-Optimal Glimpse Sequences for Improved Hard Attention Neural Network Training},
+  author={Harvey, William and Teng, Michael and Wood, Frank},
+  journal={arXiv preprint arXiv:1906.05462},
+  year={2019},
+  eid = {arXiv:1906.05462},
+  pages = {arXiv:1906.05462},
+  archivePrefix = {arXiv},
+  eprint = {1906.05462},
+  url_Link={https://arxiv.org/abs/1906.05462},
+  url_Paper={https://arxiv.org/pdf/1906.05462.pdf},
+  support = {D3M, ETALUMIS},
+  abstract={Hard visual attention is a promising approach to reduce the computational burden of modern computer vision methodologies. Hard attention mechanisms are typically non-differentiable. They can be trained with reinforcement learning but the high-variance training this entails hinders more widespread application. We show how hard attention for image classification can be framed as a Bayesian optimal experimental design (BOED) problem. From this perspective, the optimal locations to attend to are those which provide the greatest expected reduction in the entropy of the classification distribution. We introduce methodology from the BOED literature to approximate this optimal behaviour, and use it to generate `near-optimal' sequences of attention locations. We then show how to use such sequences to partially supervise, and therefore speed up, the training of a hard attention mechanism. Although generating these sequences is computationally expensive, they can be reused by any other networks later trained on the same task.}
+}
+
+@article{BAT-20a,
+  title={Improving Few-Shot Visual Classification with Unlabelled Examples},
+  author={Bateni, Peyman and Barber, Jarred and van de Meent, Jan-Willem and Wood, Frank},
+  journal={arXiv preprint},
+  year={2020},
+  eid = {arXiv:2006.12245},
+  pages = {arXiv:2006.12245},
+  archivePrefix = {arXiv},
+  eprint = {2006.12245},
+  url_Link={https://arxiv.org/abs/2006.12245},
+  url_Paper={https://arxiv.org/pdf/2006.12245.pdf},
+  support = {D3M, ETALUMIS},
+  abstract={We propose a transductive meta-learning method that uses unlabelled instances to improve few-shot image classification performance. Our approach combines a regularized Mahalanobis-distance-based soft k-means clustering procedure with a state of the art neural adaptive feature extractor to achieve improved test-time classification accuracy using unlabelled data. We evaluate our method on transductive few-shot learning tasks, in which the goal is to jointly predict labels for query (test) examples given a set of support (training) examples. We achieve new state of the art in-domain performance on Meta-Dataset, and improve accuracy on mini- and tiered-ImageNet as compared to other conditional neural adaptive methods that use the same pre-trained feature extractor.}  
+}
+
+@inproceedings{NAD-20,
+  title={Amortized rejection sampling in universal probabilistic programming},
+  author={Naderiparizi, Saeid and {\'S}cibior, Adam and Munk, Andreas and Ghadiri, Mehrdad and Baydin, At{\i}l{\i}m G{\"u}ne{\c{s}} and Gram-Hansen, Bradley and de Witt, Christian Schroeder and Zinkov, Robert and Torr, Philip HS and Rainforth, Tom and others},
+  booktitle={International Conference on Probabilistic Programming (PROBPROG)},
+  year = 2020,
+  month = jul,
+  eid = {arXiv:1910.09056},
+  pages = {arXiv:1910.09056},
+  archivePrefix = {arXiv},
+  eprint = {1910.09056},
+  url_Link={https://arxiv.org/abs/1910.09056},
+  url_Paper={https://arxiv.org/pdf/1910.09056.pdf},
+  support = {D3M, ETALUMIS},
+  abstract={Existing approaches to amortized inference in probabilistic programs with unbounded loops can produce estimators with infinite variance. An instance of this is importance sampling inference in programs that explicitly include rejection sampling as part of the user-programmed generative procedure. In this paper we develop a new and efficient amortized importance sampling estimator. We prove finite variance of our estimator and empirically demonstrate our method's correctness and efficiency compared to existing alternatives on generative programs containing rejection sampling loops and discuss how to implement our method in a generic probabilistic programming framework.}
+}
+
+@inproceedings{BRE-20,
+  author = {{Brekelmans}, Rob and {Masrani}, Vaden and {Wood}, Frank and {Ver Steeg}, Greg and {Galstyan}, Aram},
+  title = "{All in the Exponential Family: Bregman Duality in Thermodynamic Variational Inference}",
+  booktitle={Thirty-seventh International Conference on Machine Learning (ICML 2020)},
+  keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
+  year = 2020,
+  month = jul,
+  eid = {arXiv:2007.00642},
+  pages = {arXiv:2007.00642},
+  archivePrefix = {arXiv},
+  eprint = {2007.00642},
+  url_Link={https://arxiv.org/abs/2007.00642},
+  url_Paper={https://arxiv.org/pdf/2007.00642.pdf},
+  support = {D3M},
+  abstract={The recently proposed Thermodynamic Variational Objective (TVO) leverages thermodynamic integration to provide a family of variational inference objectives, which both tighten and generalize the ubiquitous Evidence Lower Bound (ELBO). However, the tightness of TVO bounds was not previously known, an expensive grid search was used to choose a "schedule" of intermediate distributions, and model learning suffered with ostensibly tighter bounds. In this work, we propose an exponential family interpretation of the geometric mixture curve underlying the TVO and various path sampling methods, which allows us to characterize the gap in TVO likelihood bounds as a sum of KL divergences. We propose to choose intermediate distributions using equal spacing in the moment parameters of our exponential family, which matches grid search performance and allows the schedule to adaptively update over the course of training. Finally, we derive a doubly reparameterized gradient estimator which improves model learning and allows the TVO to benefit from more refined bounds. To further contextualize our contributions, we provide a unified framework for understanding thermodynamic integration and the TVO using Taylor series remainders.}
+  }
+
 @unpublished{WOO-20,
   author = {{Wood}, Frank and {Warrington}, Andrew and {Naderiparizi}, Saeid and {Weilbach}, Christian and {Masrani}, Vaden and {Harvey}, William and {Scibior}, Adam and {Beronov}, Boyan and {Nasseri}, Ali},
   title = "{Planning as Inference in Epidemiological Models}",
@@ -18,6 +93,7 @@
 }
 
 
+
 @inproceedings{WAR-20,
   title={Coping With Simulators That Don’t Always Return},
   author={Warrington, A and Naderiparizi, S and Wood, F},
@@ -25,16 +101,42 @@
   archiveprefix = {arXiv},
   eprint = {1906.05462},
   year={2020},
-  url_Link={https://openreview.net/forum?id=SJecKyhEKr},
-  url_Paper={https://openreview.net/pdf?id=SJecKyhEKr},
+  url_Link={https://arxiv.org/abs/2003.12908},
+  url_Paper={https://arxiv.org/pdf/2003.12908.pdf},
+  keywords = {simulators, smc, autoregressive flow},
+  support = {D3M},
+  abstract = {Deterministic models are approximations of reality that are easy to interpret and often easier to build than stochastic alternatives. Unfortunately, as nature is capricious, observational data can never be fully explained by deterministic models in practice. Observation and process noise need to be added to adapt deterministic models to behave stochastically, such that they are capable of explaining and extrapolating from noisy data. We investigate and address computational inefficiencies that arise from adding process noise to deterministic simulators that fail to return for certain inputs; a property we describe as "brittle." We show how to train a conditional normalizing flow to propose perturbations such that the simulator succeeds with high probability, increasing computational efficiency.}
+  }
+
+@techreport{WOO-19,
+  title={Hasty-A Generative Model Complier},
+  author={Wood, Frank and Teng, Michael and Zinkov, Rob},
+  year={2019},
+  institution={University of Oxford Oxford United Kingdom},
+  url_Link={https://apps.dtic.mil/sti/citations/AD1072839},
+  url_Paper={https://apps.dtic.mil/sti/pdfs/AD1072839.pdf},
+  support = {D3M},
+  abstract = {This work describes our contribution of proof of concept primitives to the D3M program and research progress made towards an initial version of Hasty. Although we were unable to complete the initial version of Hasty, or contribute to the D3M primitive library the types of primitives that Hasty will enable we did train a number of Highly Qualified Personnel HQP and have interacted with the AutoML, probabilistic programming languages, neural networking, and other communities which our work is expected to impact.}
+}
+
+@inproceedings{WAR-19,
+  title={Coping With Simulators That Don’t Always Return},
+  author={Warrington, A and Naderiparizi, S and Wood, F},
+  booktitle={Proceedings of the Twenty Third International Conference on Artificial Intelligence and Statistics (PMLR)},
+  volume ={108}
+  pages = {1748-1758}
+  year={2020},
+  url_Link={http://proceedings.mlr.press/v108/warrington20a.html},
+  url_Paper={http://proceedings.mlr.press/v108/warrington20a/warrington20a.pdf},
+  Note={Presented at the 2nd Symposium on Advances in Approximate Bayesian Inference (AABI 2019)},
   keywords = {simulators, smc, autoregressive flow},
   support = {D3M},
   abstract = {Deterministic models are approximations of reality that are often easier to build and interpret than stochastic alternatives.  
-Unfortunately, as nature is capricious, observational data can never be fully explained by deterministic models in practice.
+Unfortunately, as nature is capricious, observational data can never be fully explained by deterministic models in practice.  
 Observation and process noise need to be added to adapt deterministic models to behave stochastically, such that they are capable of explaining and extrapolating from noisy data.
 Adding process noise to deterministic simulators can induce a failure in the simulator resulting in no return value for certain inputs -- a property we describe as ``brittle.''
 We investigate and address the wasted computation that arises from these failures, and the effect of such failures on downstream inference tasks.
-We show that performing inference in this space can be viewed as rejection sampling, and train a conditional normalizing flow as a proposal over noise values such that there is a low probability that the simulator crashes, increasing computational efficiency and inference fidelity for a fixed sample budget when used as the proposal in an approximate inference algorithm.},
+We show that performing inference in this space can be viewed as rejection sampling, and train a conditional normalizing flow as a proposal over noise values such that there is a low probability that the simulator crashes, increasing computational efficiency and inference fidelity for a fixed sample budget when used as the proposal in an approximate inference algorithm.}
 }
 
 @inproceedings{HAR-19,
@@ -100,6 +202,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   support = {D3M, LwLL},
   project = {LwLL},
   url_Link={https://arxiv.org/abs/1912.03432},
+  url_Link = {https://openaccess.thecvf.com/content_CVPR_2020/html/Bateni_Improved_Few-Shot_Visual_Classification_CVPR_2020_paper.html},
   url_Paper={http://openaccess.thecvf.com/content_CVPR_2020/papers/Bateni_Improved_Few-Shot_Visual_Classification_CVPR_2020_paper.pdf},
   url_Paper={https://arxiv.org/pdf/1912.03432.pdf},
   abstract={Few-shot learning is a fundamental task in computer vision that carries the promise of alleviating the need for exhaustively labeled data. Most few-shot learning approaches to date have focused on progressively more complex neural feature extractors and classifier adaptation strategies, as well as the refinement of the task definition itself. In this paper, we explore the hypothesis that a simple class-covariance-based distance metric, namely the Mahalanobis distance, adopted into a state of the art few-shot learning approach (CNAPS) can, in and of itself, lead to a significant performance improvement. We also discover that it is possible to learn adaptive feature extractors that allow useful estimation of the high dimensional feature covariances required by this metric from surprisingly few samples. The result of our work is a new "Simple CNAPS" architecture which has up to 9.2% fewer trainable parameters than CNAPS and performs up to 6.1% better than state of the art on the standard few-shot image classification benchmark dataset.}
@@ -204,7 +307,7 @@ We show that performing inference in this space can be viewed as rejection sampl
 @inproceedings{WAR-19,
   title={The Virtual Patch Clamp: Imputing C. elegans Membrane Potentials from Calcium Imaging},
   author={Warrington, Andrew and Spencer, Arthur and Wood, Frank},
-  booktitle={NeurIPS 2019 Workshop Neuro AI homepage},
+  booktitle={NeurIPS 2019 Workshop Neuro AI},
   archiveprefix = {arXiv},
   eprint = {1907.11075},
   support = {D3M},
@@ -223,6 +326,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   eprint = {1907.08082},
   url_Link={https://arxiv.org/abs/1907.08082},
   url_Paper={https://arxiv.org/pdf/1907.08082.pdf},
+  url_Presentation={https://icml.cc/Conferences/2019/ScheduleMultitrack?event=4702},
   support = {D3M},
   abstract={Current approaches to amortizing Bayesian inference focus solely on approximating the posterior distribution. Typically, this approximation is, in turn, used to calculate expectations for one or more target functions - a computational pipeline which is inefficient when the target function(s) are known upfront. In this paper, we address this inefficiency by introducing AMCI, a method for amortizing Monte Carlo integration directly. AMCI operates similarly to amortized inference but produces three distinct amortized proposals, each tailored to a different component of the overall expectation calculation. At runtime, samples are produced separately from each amortized proposal, before being combined to an overall estimate of the expectation. We show that while existing approaches are fundamentally limited in the level of accuracy they can achieve, AMCI can theoretically produce arbitrarily small errors for any integrable target function using only a single sample from each proposal at runtime. We further show that it is able to empirically outperform the theoretically optimal self-normalized importance sampler on a number of example problems. Furthermore, AMCI allows not only for amortizing over datasets but also amortizing over target functions.}
 }
@@ -330,14 +434,16 @@ We show that performing inference in this space can be viewed as rejection sampl
   This document closes with a chapter on advanced topics which we believe to be, at the time of writing, interesting directions for probabilistic programming research; directions that point towards a tight integration with deep neural network research and the development of systems for next-generation artificial intelligence applications.}
 }
 
-@inproceedings{BAY-18,
+@inproceedings{BAY-19
   title={Efficient Probabilistic Inference in the Quest for Physics Beyond the Standard Model},
   author={Baydin, Atilim Gunes and Heinrich, Lukas and Bhimji, Wahid and Gram-Hansen, Bradley and Louppe, Gilles and Shao, Lei and Cranmer, Kyle and Wood, Frank and others},
   booktitle={Thirty-second Conference on Neural Information Processing Systems (NeurIPS)},
   archiveprefix = {arXiv},
   eprint = {1807.07706},
-  year={2018},
+  year={2019},
+  url_Link={https://papers.nips.cc/paper/8785-efficient-probabilistic-inference-in-the-quest-for-physics-beyond-the-standard-model}
   url_Link={https://arxiv.org/abs/1807.07706},
+  url_Paper={https://papers.nips.cc/paper/8785-efficient-probabilistic-inference-in-the-quest-for-physics-beyond-the-standard-model.pdf}
   url_Paper={https://arxiv.org/pdf/1807.07706.pdf},
   abstract={We present a novel probabilistic programming framework that couples directly to existing large-scale simulators through a cross-platform probabilistic execution protocol, which allows general-purpose inference engines to record and control random number draws within simulators in a language-agnostic way. The execution of existing simulators as probabilistic programs enables highly interpretable posterior inference in the structured model defined by the simulator code base. We demonstrate the technique in particle physics, on a scientifically accurate simulation of the tau lepton decay, which is a key ingredient in establishing the properties of the Higgs boson. Inference efficiency is achieved via inference compilation where a deep recurrent neural network is trained to parameterize proposal distributions and control the stochastic simulator in a sequential importance sampling scheme, at a fraction of the computational cost of a Markov chain Monte Carlo baseline.}
 }
