@@ -1,13 +1,13 @@
 @inproceedings{WEI-20,
   title={Structured Conditional Continuous Normalizing Flows for Efficient Amortized Inference in Graphical Models},
   author={Weilbach, Christian and Beronov, Boyan and Wood, Frank and Harvey, William},
-  booktitle={International Conference on Artificial Intelligence and Statistics},
+  booktitle={Proceedings of the Twenty Third International Conference on Artificial Intelligence and Statistics (AISTATS)},
   pages={4441--4451},
   year={2020},
   url_Link={http://proceedings.mlr.press/v108/weilbach20a.html},
   url_Paper={http://proceedings.mlr.press/v108/weilbach20a/weilbach20a.pdf},
-  Note={Presented at the 2nd Symposium on Advances in Approximate Bayesian Inference (AABI 2019)},
   support = {D3M},
+  bibbase_note = {PMLR 108:4441-4451}
   abstract = {We exploit minimally faithful inversion of graphical model structures to specify sparse continuous normalizing flows (CNFs) for amortized inference. We find that the sparsity of this factorization can be exploited to reduce the numbers of parameters in the neural network, adaptive integration steps of the flow, and consequently FLOPs at both training and inference time without decreasing performance in comparison to unconstrained flows. By expressing the structure inversion as a compilation pass in a probabilistic programming language, we are able to apply it in a novel way to models as complex as convolutional neural networks. Furthermore, we extend the training objective for CNFs in the context of inference amortization to the symmetric Kullback-Leibler divergence, and demonstrate its theoretical and practical advantages.}
 }
 
@@ -17,7 +17,6 @@
   journal={arXiv preprint arXiv:1906.05462},
   year={2019},
   eid = {arXiv:1906.05462},
-  pages = {arXiv:1906.05462},
   archivePrefix = {arXiv},
   eprint = {1906.05462},
   url_Link={https://arxiv.org/abs/1906.05462},
@@ -32,7 +31,6 @@
   journal={arXiv preprint},
   year={2020},
   eid = {arXiv:2006.12245},
-  pages = {arXiv:2006.12245},
   archivePrefix = {arXiv},
   eprint = {2006.12245},
   url_Link={https://arxiv.org/abs/2006.12245},
@@ -46,9 +44,7 @@
   author={Naderiparizi, Saeid and {\'S}cibior, Adam and Munk, Andreas and Ghadiri, Mehrdad and Baydin, At{\i}l{\i}m G{\"u}ne{\c{s}} and Gram-Hansen, Bradley and de Witt, Christian Schroeder and Zinkov, Robert and Torr, Philip HS and Rainforth, Tom and others},
   booktitle={International Conference on Probabilistic Programming (PROBPROG)},
   year = 2020,
-  month = jul,
   eid = {arXiv:1910.09056},
-  pages = {arXiv:1910.09056},
   archivePrefix = {arXiv},
   eprint = {1910.09056},
   url_Link={https://arxiv.org/abs/1910.09056},
@@ -59,13 +55,12 @@
 
 @inproceedings{BRE-20,
   author = {{Brekelmans}, Rob and {Masrani}, Vaden and {Wood}, Frank and {Ver Steeg}, Greg and {Galstyan}, Aram},
-  title = "{All in the Exponential Family: Bregman Duality in Thermodynamic Variational Inference}",
+  title = {All in the Exponential Family: Bregman Duality in Thermodynamic Variational Inference},
   booktitle={Thirty-seventh International Conference on Machine Learning (ICML 2020)},
   keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
   year = 2020,
   month = jul,
   eid = {arXiv:2007.00642},
-  pages = {arXiv:2007.00642},
   archivePrefix = {arXiv},
   eprint = {2007.00642},
   url_Link={https://arxiv.org/abs/2007.00642},
@@ -76,36 +71,33 @@
 
 @unpublished{WOO-20,
   author = {{Wood}, Frank and {Warrington}, Andrew and {Naderiparizi}, Saeid and {Weilbach}, Christian and {Masrani}, Vaden and {Harvey}, William and {Scibior}, Adam and {Beronov}, Boyan and {Nasseri}, Ali},
-  title = "{Planning as Inference in Epidemiological Models}",
+  title = {Planning as Inference in Epidemiological Models},
   journal = {arXiv e-prints},
   keywords = {Quantitative Biology - Populations and Evolution, Computer Science - Machine Learning, Statistics - Machine Learning},
   year = {2020},
-  month=mar,
   eid = {arXiv:2003.13221},
-  pages = {arXiv:2003.13221},
   archivePrefix = {arXiv},
   eprint = {2003.13221},
-  primaryClass = {q-bio.PE},
-  project = {COVID},
-  support = {D3M,COVID},
+  project = {D3M,COVID},
   url_Link={https://arxiv.org/abs/2003.13221},
   url_Paper={https://arxiv.org/pdf/2003.13221.pdf},
   abstract={In this work we demonstrate how existing software tools can be used to automate parts of infectious disease-control policy-making via performing inference in existing epidemiological dynamics models. The kind of inference tasks undertaken include computing, for planning purposes, the posterior distribution over putatively controllable, via direct policy-making choices, simulation model parameters that give rise to acceptable disease progression outcomes. Neither the full capabilities of such inference automation software tools nor their utility for planning is widely disseminated at the current time. Timely gains in understanding about these tools and how they can be used may lead to more fine-grained and less economically damaging policy prescriptions, particularly during the current COVID-19 pandemic.}
 }
 
-
-
 @inproceedings{WAR-20,
   title={Coping With Simulators That Don’t Always Return},
   author={Warrington, A and Naderiparizi, S and Wood, F},
-  booktitle={The 23rd International Conference on Artificial Intelligence and Statistics (AISTATS 2020)},
+  booktitle={The 23rd International Conference on Artificial Intelligence and Statistics (AISTATS)},
   archiveprefix = {arXiv},
   eprint = {1906.05462},
   year={2020},
-  url_Link={https://arxiv.org/abs/2003.12908},
-  url_Paper={https://arxiv.org/pdf/2003.12908.pdf},
+  url_Link = {http://proceedings.mlr.press/v108/warrington20a.html},
+  url_Paper = {http://proceedings.mlr.press/v108/warrington20a/warrington20a.pdf},
+  url_Link = {https://arxiv.org/abs/2003.12908},
+  url_Paper = {https://arxiv.org/pdf/2003.12908.pdf},
   keywords = {simulators, smc, autoregressive flow},
   support = {D3M,ETALUMIS},
+  bibbase_note={PMLR 108:1748-1758},
   abstract = {Deterministic models are approximations of reality that are easy to interpret and often easier to build than stochastic alternatives. Unfortunately, as nature is capricious, observational data can never be fully explained by deterministic models in practice. Observation and process noise need to be added to adapt deterministic models to behave stochastically, such that they are capable of explaining and extrapolating from noisy data. We investigate and address computational inefficiencies that arise from adding process noise to deterministic simulators that fail to return for certain inputs; a property we describe as "brittle." We show how to train a conditional normalizing flow to propose perturbations such that the simulator succeeds with high probability, increasing computational efficiency.}
   }
 
@@ -123,13 +115,10 @@
 @inproceedings{WAR-19a,
   title={Coping With Simulators That Don’t Always Return},
   author={Warrington, A and Naderiparizi, S and Wood, F},
-  booktitle={Proceedings of the Twenty Third International Conference on Artificial Intelligence and Statistics (PMLR)},
-  volume ={108},
-  pages = {1748-1758},
-  year={2020},
-  url_Link={http://proceedings.mlr.press/v108/warrington20a.html},
-  url_Paper={http://proceedings.mlr.press/v108/warrington20a/warrington20a.pdf},
-  Note={Presented at the 2nd Symposium on Advances in Approximate Bayesian Inference (AABI 2019)},
+  booktitle={2nd Symposium on Advances in Approximate Bayesian Inference (AABI)},
+  year={2019},
+  url_Link={https://openreview.net/forum?id=SJecKyhEKr&noteId=SJecKyhEKr},
+  url_Paper={https://openreview.net/pdf?id=SJecKyhEKr},
   keywords = {simulators, smc, autoregressive flow},
   support = {D3M,ETALUMIS},
   abstract = {Deterministic models are approximations of reality that are often easier to build and interpret than stochastic alternatives.  
@@ -179,30 +168,30 @@ We show that performing inference in this space can be viewed as rejection sampl
   abstract = {We present a framework for automatically structuring and training fast, approximate, deep neural surrogates of existing stochastic simulators. Unlike traditional approaches to surrogate modeling, our surrogates retain the interpretable structure of the reference simulators. The particular way we achieve this allows us to replace the reference simulator with the surrogate when undertaking amortized inference in the probabilistic programming sense. The fidelity and speed of our surrogates allow for not only faster "forward" stochastic simulation but also for accurate and substantially faster inference. We support these claims via experiments that involve a commercial composite-materials curing simulator. Employing our surrogate modeling technique makes inference an order of magnitude faster, opening up the possibility of doing simulator-based, non-invasive, just-in-time parts quality testing; in this case inferring safety-critical latent internal temperature profiles of composite materials undergoing curing from surface temperature profile measurements.},
 }
 
-@inproceedings{WEI-20a,
+@inproceedings{WEI-19,
   title={Efficient Inference Amortization in Graphical Models using Structured Continuous Conditional Normalizing Flows},
   author={Weilbach, Christian and Beronov, Boyan and Harvey, William and Wood, Frank},
-  booktitle={The 23rd International Conference on Artificial Intelligence and Statistics (AISTATS 2020)},
+  booktitle={2nd Symposium on Advances in Approximate Bayesian Inference (AABI)},
   support = {D3M},
   url_Link={https://openreview.net/forum?id=BJlhYknNFS},
   url_Paper={https://openreview.net/pdf?id=BJlhYknNFS},
   abstract = {We introduce a more efficient neural architecture for amortized inference, which combines continuous and conditional normalizing flows using a principled choice of structure. Our gradient flow derives its sparsity pattern from the minimally faithful inverse of its underlying graphical model. We find that this factorization reduces the necessary numbers both of parameters in the neural network and of adaptive integration steps in the ODE solver. Consequently, the throughput at training time and inference time is increased, without decreasing performance in comparison to unconstrained flows. By expressing the structural inversion and the flow construction as compilation passes of a probabilistic programming language, we demonstrate their applicability to the stochastic inversion of realistic models such as convolutional neural networks (CNN).},
-  year={2020}
+  year={2019}
 }
 
 @inproceedings{BAT-20,
   author = {{Bateni}, Peyman and {Goyal}, Raghav and {Masrani}, Vaden and {Wood}, Frank and {Sigal}, Leonid},
   title = {Improved Few-Shot Visual Classification},
-  booktitle = {2020 Conference on Computer Vision and Pattern Recognition (CVPR 2020)},
+  booktitle = {Conference on Computer Vision and Pattern Recognition (CVPR)},
   keywords = {LwLL, Computer Science - Computer Vision and Pattern Recognition},
   year = {2020},
   eid = {arXiv:1912.03432},
   archivePrefix = {arXiv},
   eprint = {1912.03432},
   support = {D3M,LwLL},
-  url_Link={https://arxiv.org/abs/1912.03432},
   url_Link = {https://openaccess.thecvf.com/content_CVPR_2020/html/Bateni_Improved_Few-Shot_Visual_Classification_CVPR_2020_paper.html},
   url_Paper={http://openaccess.thecvf.com/content_CVPR_2020/papers/Bateni_Improved_Few-Shot_Visual_Classification_CVPR_2020_paper.pdf},
+  url_Link={https://arxiv.org/abs/1912.03432},
   url_Paper={https://arxiv.org/pdf/1912.03432.pdf},
   abstract={Few-shot learning is a fundamental task in computer vision that carries the promise of alleviating the need for exhaustively labeled data. Most few-shot learning approaches to date have focused on progressively more complex neural feature extractors and classifier adaptation strategies, as well as the refinement of the task definition itself. In this paper, we explore the hypothesis that a simple class-covariance-based distance metric, namely the Mahalanobis distance, adopted into a state of the art few-shot learning approach (CNAPS) can, in and of itself, lead to a significant performance improvement. We also discover that it is possible to learn adaptive feature extractors that allow useful estimation of the high dimensional feature covariances required by this metric from surprisingly few samples. The result of our work is a new "Simple CNAPS" architecture which has up to 9.2% fewer trainable parameters than CNAPS and performs up to 6.1% better than state of the art on the standard few-shot image classification benchmark dataset.}
 }
@@ -223,7 +212,7 @@ We show that performing inference in this space can be viewed as rejection sampl
 @inproceedings{CAM-19,
   title={Sparse Variational Inference: Bayesian Coresets from Scratch},
   author={Campbell, Trevor and Beronov, Boyan},
-  booktitle={Advances in Neural Information Processing Systems 32 (NIPS 2019)},
+  booktitle={Conference on Neural Information Processing Systems (NeurIPS)},
   pages={11457--11468},
   year={2019},
   eid = {arXiv:1906.03329},
@@ -233,8 +222,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   url_Link={http://papers.nips.cc/paper/9322-sparse-variational-inference-bayesian-coresets-from-scratch},
   url_Paper={http://papers.nips.cc/paper/9322-sparse-variational-inference-bayesian-coresets-from-scratch.pdf},
   url_Poster={https://github.com/plai-group/bibliography/raw/master/presentations_posters/CAM-19.pdf},
-  bibbase_note={1st prize, Student poster competition, AICan (Annual Meeting, Pan-Canadian AI Strategy,
-    Canadian Institute for Advanced Research). Vancouver, Canada, Dec. 9, 2019},
+  bibbase_note={1st prize, Student poster competition, AICan (Annual Meeting, Pan-Canadian AI Strategy, Canadian Institute for Advanced Research). Vancouver, Canada, Dec. 9, 2019},
     abstract={The proliferation of automated inference algorithms in Bayesian statistics has provided practitioners newfound access to fast, reproducible data analysis and powerful statistical models. Designing automated methods that are also both computationally scalable and theoretically sound, however, remains a significant challenge. Recent work on Bayesian coresets takes the approach of compressing the dataset before running a standard inference algorithm, providing both scalability and guarantees on posterior approximation error. But the automation of past coreset methods is limited because they depend on the availability of a reasonable coarse posterior approximation, which is difficult to specify in practice. In the present work we remove this requirement by formulating coreset construction as sparsity-constrained variational inference within an exponential family. This perspective leads to a novel construction via greedy optimization, and also provides a unifying information-geometric view of present and past methods. The proposed Riemannian coreset construction algorithm is fully automated, requiring no problem-specific inputs aside from the probabilistic model and dataset. In addition to being significantly easier to use than past methods, experiments demonstrate that past coreset constructions are fundamentally limited by the fixed coarse posterior approximation; in contrast, the proposed algorithm is able to continually improve the coreset, providing state-of-the-art Bayesian dataset summarization with orders-of-magnitude reduction in KL divergence to the exact posterior.}
 }
 
