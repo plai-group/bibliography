@@ -21,8 +21,8 @@
   address = {Tel Aviv, Israel}, 
   month = {22--25 Jul}, 
   publisher = {PMLR}, 
-  url_Paper = {http://proceedings.mlr.press/v115/le20a/le20a.pdf}, 
   url_Link = {http://proceedings.mlr.press/v115/le20a.html}, 
+  url_Paper = {http://proceedings.mlr.press/v115/le20a/le20a.pdf}, 
   support = {D3M},
   abstract = {Stochastic control-flow models (SCFMs) are a class of generative models that involve branching on choices from discrete random variables. Amortized gradient-based learning of SCFMs is challenging as most approaches targeting discrete variables rely on their continuous relaxations—which can be intractable in SCFMs, as branching on relaxations requires evaluating all (exponentially many) branching paths. Tractable alternatives mainly combine REINFORCE with complex control-variate schemes to improve the variance of naive estimators. Here, we revisit the reweighted wake-sleep (RWS) [5] algorithm, and through extensive evaluations, show that it outperforms current state-of-the-art methods in learning SCFMs. Further, in contrast to the importance weighted autoencoder, we observe that RWS learns better models and inference networks with increasing numbers of particles. Our results suggest that RWS is a competitive, often preferable, alternative for learning SCFMs.} 
   }
@@ -78,6 +78,7 @@
   year={2020},
   url_Link={http://proceedings.mlr.press/v108/weilbach20a.html},
   url_Paper={http://proceedings.mlr.press/v108/weilbach20a/weilbach20a.pdf},
+  url_Poster={https://github.com/plai-group/bibliography/blob/master/presentations_posters/PROBPROG2020_WEI.pdf},
   support = {D3M},
   bibbase_note = {PMLR 108:4441-4451},
   abstract = {We exploit minimally faithful inversion of graphical model structures to specify sparse continuous normalizing flows (CNFs) for amortized inference. We find that the sparsity of this factorization can be exploited to reduce the numbers of parameters in the neural network, adaptive integration steps of the flow, and consequently FLOPs at both training and inference time without decreasing performance in comparison to unconstrained flows. By expressing the structure inversion as a compilation pass in a probabilistic programming language, we are able to apply it in a novel way to models as complex as convolutional neural networks. Furthermore, we extend the training objective for CNFs in the context of inference amortization to the symmetric Kullback-Leibler divergence, and demonstrate its theoretical and practical advantages.}
@@ -121,6 +122,7 @@
   eprint = {1910.09056},
   url_Paper={https://arxiv.org/pdf/1910.09056.pdf},
   url_ArXiv={https://arxiv.org/abs/1910.09056},
+  url_Poster={https://github.com/plai-group/bibliography/blob/master/presentations_posters/PROBPROG2020_NAD.pdf},
   support = {D3M,ETALUMIS},
   abstract={Existing approaches to amortized inference in probabilistic programs with unbounded loops can produce estimators with infinite variance. An instance of this is importance sampling inference in programs that explicitly include rejection sampling as part of the user-programmed generative procedure. In this paper we develop a new and efficient amortized importance sampling estimator. We prove finite variance of our estimator and empirically demonstrate our method's correctness and efficiency compared to existing alternatives on generative programs containing rejection sampling loops and discuss how to implement our method in a generic probabilistic programming framework.}
 }
@@ -166,7 +168,7 @@
   year={2020},
   url_Link = {http://proceedings.mlr.press/v108/warrington20a.html},
   url_Paper = {http://proceedings.mlr.press/v108/warrington20a/warrington20a.pdf},
-  url_Poster = {https://github.com/plai-group/bibliography/blob/master/presentations_posters/WAR-19.pdf},
+  url_Poster = {https://github.com/plai-group/bibliography/blob/master/presentations_posters/WAR-20.pdf},
   url_ArXiv = {https://arxiv.org/abs/2003.12908},
   keywords = {simulators, smc, autoregressive flow},
   support = {D3M,ETALUMIS},
@@ -212,6 +214,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   eprint = {1906.05462},
   url_Paper={http://bayesiandeeplearning.org/2019/papers/38.pdf},
   url_ArXiv={https://arxiv.org/abs/1906.05462},
+  url_Poster={https://github.com/plai-group/bibliography/blob/master/presentations_posters/HAR-19.pdf},
   abstract = {We introduce the use of Bayesian optimal experimental design techniques for generating glimpse sequences to use in semi-supervised training of hard attention networks. Hard attention holds the promise of greater energy efficiency and superior inference performance. Employing such networks for image classification usually involves choosing a sequence of glimpse locations from a stochastic policy. As the outputs of observations are typically non-differentiable with respect to their glimpse locations, unsupervised gradient learning of such a policy requires REINFORCE-style updates. Also, the only reward signal is the final classification accuracy. For these reasons hard attention networks, despite their promise, have not achieved the wide adoption that soft attention networks have and, in many practical settings, are difficult to train. We find that our method for semi-supervised training makes it easier and faster to train hard attention networks and correspondingly could make them practical to consider in situations where they were not before.},
 }
 
@@ -225,6 +228,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   support = {D3M,LwLL},
   url_Paper={https://arxiv.org/pdf/1910.11961.pdf},
   url_ArXiv={https://arxiv.org/abs/1910.11961},
+  url_Poster={https://github.com/plai-group/bibliography/blob/master/presentations_posters/PROBPROG2020_HAR.pdf},
   abstract = {We present a new approach to automatic amortized inference in universal probabilistic programs which improves performance compared to current methods. Our approach is a variation of inference compilation (IC) which leverages deep neural networks to approximate a posterior distribution over latent variables in a probabilistic program. A challenge with existing IC network architectures is that they can fail to model long-range dependencies between latent variables. To address this, we introduce an attention mechanism that attends to the most salient variables previously sampled in the execution of a probabilistic program. We demonstrate that the addition of attention allows the proposal distributions to better match the true posterior, enhancing inference about latent variables in simulators.},
 }
 
@@ -238,6 +242,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   support = {D3M,ETALUMIS},
   url_Paper={https://arxiv.org/pdf/1910.11950.pdf},
   url_ArXiv={https://arxiv.org/abs/1910.11950},
+  url_Poster={https://github.com/plai-group/bibliography/blob/master/presentations_posters/PROBPROG2020_MUN.pdf},
   abstract = {We present a framework for automatically structuring and training fast, approximate, deep neural surrogates of existing stochastic simulators. Unlike traditional approaches to surrogate modeling, our surrogates retain the interpretable structure of the reference simulators. The particular way we achieve this allows us to replace the reference simulator with the surrogate when undertaking amortized inference in the probabilistic programming sense. The fidelity and speed of our surrogates allow for not only faster "forward" stochastic simulation but also for accurate and substantially faster inference. We support these claims via experiments that involve a commercial composite-materials curing simulator. Employing our surrogate modeling technique makes inference an order of magnitude faster, opening up the possibility of doing simulator-based, non-invasive, just-in-time parts quality testing; in this case inferring safety-critical latent internal temperature profiles of composite materials undergoing curing from surface temperature profile measurements.},
 }
 
@@ -342,6 +347,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   eprint = {1907.00031},
   url_Paper={https://arxiv.org/pdf/1907.00031.pdf},
   url_ArXiv={https://arxiv.org/abs/1907.00031},
+  url_Poster={https://github.com/plai-group/bibliography/blob/master/presentations_posters/neurips_tvo_poster.pdf},
   support = {D3M},
   abstract={We introduce the thermodynamic variational objective (TVO) for learning in both continuous and discrete deep generative models. The TVO arises from a key connection between variational inference and thermodynamic integration that results in a tighter lower bound to the log marginal likelihood than the standard variational variational evidence lower bound (ELBO) while remaining as broadly applicable. We provide a computationally efficient gradient estimator for the TVO that applies to continuous, discrete, and non-reparameterizable distributions and show that the objective functions used in variational inference, variational autoencoders, wake sleep, and inference compilation are all special cases of the TVO. We use the TVO to learn both discrete and continuous deep generative models and empirically demonstrate state of the art model and inference network learning.},
   year={2019}
