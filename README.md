@@ -33,12 +33,12 @@ For sample entries, check [here](https://bibbase.org/show?bib=http://www.cs.toro
 ## Presentations and Posters
 For the time being, you can upload your presentations and posters to the relevant folders on the Github repository. Over time, these will be reuploaded to the PLAI website. 
 
-We just need the final version of your presentations and posters here, preferably in PDF. To keep things simple:
-* Use the same key as the entry key on the Bibtex file.
-* The name of the conference
+We just need the final version of your presentations and posters here, preferably in PDF. To keep things simple, the file name should include:
+* Abbreviated name of the conference and year
+* First author last name (or first three letters of it)
 * The type of presentation 
   * Add _presentation for Presentations
   * Add _poster for posters 
-An example file nam would look like WOO19_NeurIPS2019_presentation. This is a presentation/talk, done by an author withe last name wood, in 2019 at NeurIPS2019.
+An example file nam would look like NeurIPS2019_WOO_presentation. This is a presentation/talk, done by an author withe last name wood, at NeurIPS2019.
 
 Remember Github maximum repository size is 100 GB and maximum file size is 100 MB.
