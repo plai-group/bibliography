@@ -1,3 +1,39 @@
+@unpublished{brekelmans2020annealed,
+  title={Annealed Importance Sampling with q-Paths},
+  author={Brekelmans, Rob and Masrani, Vaden and Bui, Thang and Wood, Frank and Galstyan, Aram and Steeg, Greg Ver and Nielsen, Frank},
+  year={2020},
+  eprint={2012.07823},
+  archivePrefix={arXiv},
+  url_ArXiv={https://arxiv.org/abs/2012.07823},
+  url_Paper={https://arxiv.org/pdf/2012.07823.pdf},
+  support = {D3M},
+  abstract = {Annealed importance sampling (AIS) is the gold standard for estimating partition functions or marginal likelihoods, corresponding to importance sampling over a path of distributions between a tractable base and an unnormalized target. While AIS yields an unbiased estimator for any path, existing literature has been primarily limited to the geometric mixture or moment-averaged paths associated with the exponential family and KL divergence. We explore AIS using q-paths, which include the geometric path as a special case and are related to the homogeneous power mean, deformed exponential family, and α-divergence.}
+}
+
+@unpublished{warrington2020robust,
+  title={Robust Asymmetric Learning in POMDPs},
+  author={Warrington, Andrew and Lavington, J Wilder and Scibior, Adam and Schmidt, Mark and Wood, Frank},
+  year={2020},
+  eprint={2012.15566},
+  archivePrefix={arXiv},
+  url_ArXiv={https://arxiv.org/abs/2012.15566},
+  url_Paper={https://arxiv.org/pdf/2012.15566.pdf},
+  support = {D3M},
+  abstract = {Policies for partially observed Markov decision processes can be efficiently learned by imitating policies for the corresponding fully observed Markov decision processes. Unfortunately, existing approaches for this kind of imitation learning have a serious flaw: the expert does not know what the trainee cannot see, and so may encourage actions that are sub-optimal, even unsafe, under partial information. We derive an objective to instead train the expert to maximize the expected reward of the imitating agent policy, and use it to construct an efficient algorithm, adaptive asymmetric DAgger (A2D), that jointly trains the expert and the agent. We show that A2D produces an expert policy that the agent can safely imitate, in turn outperforming policies learned by imitating a fixed expert.}
+}
+
+@unpublished{harvey2021image,
+  title={Image Completion via Inference in Deep Generative Models},
+  author={Harvey, William and Naderiparizi, Saeid and Wood, Frank},
+  year={2021},
+  eprint={2102.12037},
+  archivePrefix={arXiv},
+  url_ArXiv={https://arxiv.org/abs/2102.12037},
+  url_Paper={https://arxiv.org/pdf/2102.12037.pdf},
+  support = {D3M},
+  abstract = {We consider image completion from the perspective of amortized inference in an image generative model. We leverage recent state of the art variational auto-encoder architectures that have been shown to produce photo-realistic natural images at non-trivial resolutions. Through amortized inference in such a model we can train neural artifacts that produce diverse, realistic image completions even when the vast majority of an image is missing. We demonstrate superior sample quality and diversity compared to prior art on the CIFAR-10 and FFHQ-256 datasets. We conclude by describing and demonstrating an application that requires an in-painting model with the capabilities ours exhibits: the use of Bayesian optimal experimental design to select the most informative sequence of small field of view x-rays for chest pathology detection.}
+}
+
 @InProceedings{nguyen2020gaussian,
   title={Gaussian Process Bandit Optimization of the Thermodynamic Variational Objective},
   author={Nguyen, Vu and Masrani, Vaden and Brekelmans, Rob and Osborne, Michael and Wood, Frank},
