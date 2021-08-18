@@ -22,16 +22,26 @@
   abstract = {We develop a deep generative model built on a fully differentiable simulator for multi-agent trajectory prediction. Agents are modeled with conditional recurrent variational neural networks (CVRNNs), which take as input an ego-centric birdview image representing the current state of the world and output an action, consisting of steering and acceleration, which is used to derive the subsequent agent state using a kinematic bicycle model. The full simulation state is then differentiably rendered for each agent, initiating the next time step. We achieve state-of-the-art results on the INTERACTION dataset, using standard neural architectures and a standard variational training objective, producing realistic multi-modal predictions without any ad-hoc diversity-inducing losses. We conduct ablation studies to examine individual components of the simulator, finding that both the kinematic bicycle model and the continuous feedback from the birdview image are crucial for achieving this level of performance. We name our model ITRA, for "Imagining the Road Ahead".}
 }
 
-@unpublished{brekelmans2020annealed,
-  title={Annealed Importance Sampling with q-Paths},
-  author={Brekelmans, Rob and Masrani, Vaden and Bui, Thang and Wood, Frank and Galstyan, Aram and Steeg, Greg Ver and Nielsen, Frank},
-  year={2020},
-  eprint={2012.07823},
-  archivePrefix={arXiv},
+@inproceedings{masrani2021qpaths,
+  title  = {q-Paths: Generalizing the Geometric Annealing Path using Power Means},
+  author = {Masrani*, V. and Brekelmans*, R. and Bui, T. and Nielsen, F. and Galstyan, A. and Ver Steeg, G. and Wood, F. and},
+  year   = {2021},
+  abbr={UAI},
+  booktitle = {37th Conference on Uncertainty in Artificial Intelligence},
+  url_ArXiv={https://arxiv.org/abs/2107.00745},
+  url_Paper={https://arxiv.org/pdf/2107.00745.pdf},
+  abstract={Many common machine learning methods involve the geometric annealing path, a sequence of intermediate densities between two distributions of interest constructed using the geometric average. While alternatives such as the moment-averaging path have demonstrated performance gains in some settings, their practical applicability remains limited by exponential family endpoint assumptions and a lack of closed form energy function. In this work, we introduce q-paths, a family of paths which is derived from a generalized notion of the mean, includes the geometric and arithmetic mixtures as special cases, and admits a simple closed form involving the deformed logarithm function from nonextensive thermodynamics. Following previous analysis of the geometric path, we interpret our q-paths as corresponding to a q-exponential family of distributions, and provide a variational representation of intermediate densities as minimizing a mixture of α-divergences to the endpoints. We show that small deviations away from the geometric path yield empirical gains for Bayesian inference using Sequential Monte Carlo and generative model evaluation using Annealed Importance Sampling.}
+}
+
+@inproceedings{brekelmans2020qpaths,
+  title  = {Annealed Importance Sampling with q-Paths},
+  author = {Brekelmans*, R. and Masrani*, V. and Thang, B. and Wood, F. and Galstyan, A. and Ver Steeg, G. and Nielsen, F.},
+  year   = {2020},
+  abbr={NeurIPS},
+  booktitle = {NeurIPS Workshop on Deep Learning through Information Geometry (Best Paper Award)},
   url_ArXiv={https://arxiv.org/abs/2012.07823},
   url_Paper={https://arxiv.org/pdf/2012.07823.pdf},
-  support = {D3M},
-  abstract = {Annealed importance sampling (AIS) is the gold standard for estimating partition functions or marginal likelihoods, corresponding to importance sampling over a path of distributions between a tractable base and an unnormalized target. While AIS yields an unbiased estimator for any path, existing literature has been primarily limited to the geometric mixture or moment-averaged paths associated with the exponential family and KL divergence. We explore AIS using q-paths, which include the geometric path as a special case and are related to the homogeneous power mean, deformed exponential family, and α-divergence.}
+  abstract={Annealed Importance Sampling (AIS) is the gold standard for estimating partition functions or marginal likelihoods, corresponding to importance sampling over a path of distributions between a tractable base and an unnormalized target. While AIS yields an unbiased estimator for any path, existing literature has been limited to the geometric mixture or moment-averaged paths associated with the exponential family and KL divergence. We explore AIS using q-paths, which include the geometric path as a special case and are related to the homogeneous power mean, deformed exponential family, and α-divergence.}
 }
 
 @unpublished{warrington2020robust,
