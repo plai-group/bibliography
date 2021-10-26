@@ -1,3 +1,48 @@
+@unpublished{pfeffer2021probabilistic,
+  title={Probabilistic Label-Efficient Deep Generative Structures (PLEDGES)},
+  author={Pfeffer, Avi and Call, Catherine and Wood, Frank and Rosenberg, Brad and Bibbiani, Kirstin and Sigal, Leonid and Shah, Ishaan and Erdogmus, Deniz and Singh, Sameer and van de Meent, Jan W},
+  year={2021},
+  institution={Charles River Analytics Inc.}
+}
+
+@INPROCEEDINGS{9533449,  
+	author={Munk, Andreas and Harvey, William and Wood, Frank},  
+	booktitle={2021 International Joint Conference on Neural Networks (IJCNN)},   
+	title={Assisting the Adversary to Improve GAN Training},   
+	year={2021},
+	pages={1-8},  
+	abstract={Some of the most popular methods for improving the stability and performance of GANs involve constraining or regularizing the discriminator. In this paper we consider a largely overlooked regularization technique which we refer to as the Adversary's Assistant (AdvAs). We motivate this using a different perspective to that of prior work. Specifically, we consider a common mismatch between theoretical analysis and practice: analysis often assumes that the discriminator reaches its optimum on each iteration. In practice, this is essentially never true, often leading to poor gradient estimates for the generator. To address this, AdvAs is a penalty imposed on the generator based on the norm of the gradients used to train the discriminator. This encourages the generator to move towards points where the discriminator is optimal. We demonstrate the effect of applying AdvAs to several GAN objectives, datasets and network architectures. The results indicate a reduction in the mismatch between theory and practice and that AdvAs can lead to improvement of GAN training, as measured by FID scores.},  
+	doi={10.1109/IJCNN52387.2021.9533449},  
+	ISSN={2161-4407},  
+	month={July},}
+
+@InProceedings{pmlr-v139-warrington21a,
+  title = 	 {Robust Asymmetric Learning in POMDPs},
+  author =       {Warrington, Andrew and Lavington, Jonathan W and Scibior, Adam and Schmidt, Mark and Wood, Frank},
+  booktitle = 	 {Proceedings of the 38th International Conference on Machine Learning},
+  pages = 	 {11013--11023},
+  year = 	 {2021},
+  editor = 	 {Meila, Marina and Zhang, Tong},
+  volume = 	 {139},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {18--24 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v139/warrington21a/warrington21a.pdf},
+  url = 	 {https://proceedings.mlr.press/v139/warrington21a.html},
+  abstract = 	 {Policies for partially observed Markov decision processes can be efficiently learned by imitating expert policies generated using asymmetric information. Unfortunately, existing approaches for this kind of imitation learning have a serious flaw: the expert does not know what the trainee cannot see, and as a result may encourage actions that are sub-optimal or unsafe under partial information. To address this issue, we derive an update which, when applied iteratively to an expert, maximizes the expected reward of the trainee’s policy. Using this update, we construct a computationally efficient algorithm, adaptive asymmetric DAgger (A2D), that jointly trains the expert and trainee policies. We then show that A2D allows the trainee to safely imitate the modified expert, and outperforms policies learned either by imitating a fixed expert or through direct reinforcement learning.}
+}
+
+
+@unpublished{ścibior2021differentiable,
+      title={Differentiable Particle Filtering without Modifying the Forward Pass}, 
+      author={Adam Ścibior and Frank Wood},
+      year={2021},
+      eprint={2106.10314},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML},
+      abstract={Particle filters are not compatible with automatic differentiation due to the presence of discrete resampling steps. While known estimators for the score function, based on Fisher's identity, can be computed using particle filters, up to this point they required manual implementation. In this paper we show that such estimators can be computed using automatic differentiation, after introducing a simple correction to the particle weights. This correction utilizes the stop-gradient operator and does not modify the particle filter operation on the forward pass, while also being cheap and easy to compute. Surprisingly, with the same correction automatic differentiation also produces good estimators for gradients of expectations under the posterior. We can therefore regard our method as a general recipe for making particle filters differentiable. We additionally show that it produces desired estimators for second-order derivatives and how to extend it to further reduce variance at the expense of additional computation.}
+}
+
 @InProceedings{BER-21,
   title={Sequential Core-Set Monte Carlo},
   author={Beronov, Boyan and Weilbach, Christian and Wood, Frank and Campbell, Trevor},
