@@ -20,7 +20,8 @@
   title = {Gradients without Backpropagation},
   publisher = {arXiv},
   year = {2022}, 
-  copyright = {arXiv.org perpetual, non-exclusive license}
+  copyright = {arXiv.org perpetual, non-exclusive license},
+  abstract={Using backpropagation to compute gradients of objective functions for optimization has remained a mainstay of machine learning. Backpropagation, or reverse-mode differentiation, is a special case within the general family of automatic differentiation algorithms that also includes the forward mode. We present a method to compute gradients based solely on the directional derivative that one can compute exactly and efficiently via the forward mode. We call this formulation the forward gradient, an unbiased estimate of the gradient that can be evaluated in a single forward run of the function, entirely eliminating the need for backpropagation in gradient descent. We demonstrate forward gradient descent in a range of problems, showing substantial savings in computation and enabling training up to twice as fast in some cases.}
 }
 
 @unpublished{TEN-22,
@@ -31,7 +32,8 @@
   title = {Exploration with Multi-Sample Target Values for Distributional Reinforcement Learning},
   publisher = {arXiv},
   year = {2022},  
-  copyright = {arXiv.org perpetual, non-exclusive license}
+  copyright = {arXiv.org perpetual, non-exclusive license},
+  abstract = {Distributional reinforcement learning (RL) aims to learn a value-network that predicts the full distribution of the returns for a given state, often modeled via a quantile-based critic. This approach has been successfully integrated into common RL methods for continuous control, giving rise to algorithms such as Distributional Soft Actor-Critic (DSAC). In this paper, we introduce multi-sample target values (MTV) for distributional RL, as a principled replacement for single-sample target value estimation, as commonly employed in current practice. The improved distributional estimates further lend themselves to UCB-based exploration. These two ideas are combined to yield our distributional RL algorithm, E2DC (Extra Exploration with Distributional Critics). We evaluate our approach on a range of continuous control tasks and demonstrate state-of-the-art model-free performance on difficult tasks such as Humanoid control. We provide further insight into the method via visualization and analysis of the learned distributions and their evolution during training.}
 }
 
 @unpublished{BAT-22,
@@ -42,7 +44,8 @@
   title = {Beyond Simple Meta-Learning: Multi-Purpose Models for Multi-Domain, Active and Continual Few-Shot Learning},
   publisher = {arXiv},
   year = {2022},  
-  copyright = {Creative Commons Attribution 4.0 International}
+  copyright = {Creative Commons Attribution 4.0 International},
+  abstract={Modern deep learning requires large-scale extensively labelled datasets for training. Few-shot learning aims to alleviate this issue by learning effectively from few labelled examples. In previously proposed few-shot visual classifiers, it is assumed that the feature manifold, where classifier decisions are made, has uncorrelated feature dimensions and uniform feature variance. In this work, we focus on addressing the limitations arising from this assumption by proposing a variance-sensitive class of models that operates in a low-label regime. The first method, Simple CNAPS, employs a hierarchically regularized Mahalanobis-distance based classifier combined with a state of the art neural adaptive feature extractor to achieve strong performance on Meta-Dataset, mini-ImageNet and tiered-ImageNet benchmarks. We further extend this approach to a transductive learning setting, proposing Transductive CNAPS. This transductive method combines a soft k-means parameter refinement procedure with a two-step task encoder to achieve improved test-time classification accuracy using unlabelled data. Transductive CNAPS achieves state of the art performance on Meta-Dataset. Finally, we explore the use of our methods (Simple and Transductive) for "out of the box" continual and active learning. Extensive experiments on large scale benchmarks illustrate robustness and versatility of this, relatively speaking, simple class of models. All trained model checkpoints and corresponding source codes have been made publicly available.}
 }
 
 @InProceedings{Bateni_2022_WACV,
@@ -51,7 +54,10 @@
     booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
     month     = {January},
     year      = {2022},
-    pages     = {2796-2805}
+    pages     = {2796-2805},
+    url_ArXiv = {https://arxiv.org/abs/2006.12245},
+    url_Paper = {https://ieeexplore.ieee.org/document/9706775},
+    abstract={We develop a transductive meta-learning method that uses unlabelled instances to improve few-shot image classification performance. Our approach combines a regularized Mahalanobis-distance-based soft k-means clustering procedure with a modified state of the art neural adaptive feature extractor to achieve improved test-time classification accuracy using unlabelled data. We evaluate our method on transductive few-shot learning tasks, in which the goal is to jointly predict labels for query (test) examples given a set of support (training) examples. We achieve state of the art performance on the Meta-Dataset, mini-ImageNet and tiered-ImageNet benchmarks.}
 }
 
 
@@ -66,7 +72,7 @@
   series = 	 {Proceedings of Machine Learning Research},
   month = 	 {27--30 Jul},
   publisher =    {PMLR},
-  pdf = 	 {https://proceedings.mlr.press/v161/masrani21a/masrani21a.pdf},
+  url_pdf = 	 {https://proceedings.mlr.press/v161/masrani21a/masrani21a.pdf},
   url_Paper = 	 {https://proceedings.mlr.press/v161/masrani21a.html},
   abstract = 	 {Many common machine learning methods involve the geometric annealing path, a sequence of intermediate densities between two distributions of interest constructed using the geometric average. While alternatives such as the moment-averaging path have demonstrated performance gains in some settings, their practical applicability remains limited by exponential family endpoint assumptions and a lack of closed form energy function. In this work, we introduce $q$-paths, a family of paths which is derived from a generalized notion of the mean, includes the geometric and arithmetic mixtures as special cases, and admits a simple closed form involving the deformed logarithm function from nonextensive thermodynamics. Following previous analysis of the geometric path, we interpret our $q$-paths as corresponding to a $q$-exponential family of distributions, and provide a variational representation of intermediate densities as minimizing a mixture of $\alpha$-divergences to the endpoints. We show that small deviations away from the geometric path yield empirical gains for Bayesian inference using Sequential Monte Carlo and generative model evaluation using Annealed Importance Sampling.}
 }
@@ -90,25 +96,21 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
 }
 
 
-@inproceedings{bateni2020enhancing,
-  title={Enhancing Few-Shot Image Classification with Unlabelled Examples},
-  author={Bateni, Peyman and Barber, Jarred and van de Meent, Jan-Willem and Wood, Frank},
-  booktitle={WACV},
-  year={2022}
-}
-
 @unpublished{harvey2021image,
   title={Image Completion via Inference in Deep Generative Models},
   author={Harvey, William and Naderiparizi, Saeid and Wood, Frank},
   journal={arXiv preprint arXiv:2102.12037},
-  year={2021}
+  year={2021},
+  url_ArXiv = {https://arxiv.org/abs/2102.12037},
+  abtstract={We consider image completion from the perspective of amortized inference in an image generative model. We leverage recent state of the art variational auto-encoder architectures that have been shown to produce photo-realistic natural images at non-trivial resolutions. Through amortized inference in such a model we can train neural artifacts that produce diverse, realistic image completions even when the vast majority of an image is missing. We demonstrate superior sample quality and diversity compared to prior art on the CIFAR-10 and FFHQ-256 datasets. We conclude by describing and demonstrating an application that requires an in-painting model with the capabilities ours exhibits: the use of Bayesian optimal experimental design to select the most informative sequence of small field of view x-rays for chest pathology detection.}
 }
 
 @techreport{pfeffer2021probabilistic,
   title={Probabilistic Label-Efficient Deep Generative Structures (PLEDGES)},
   author={Pfeffer, Avi and Call, Catherine and Wood, Frank and Rosenberg, Brad and Bibbiani, Kirstin and Sigal, Leonid and Shah, Ishaan and Erdogmus, Deniz and Singh, Sameer and van de Meent, Jan W},
   year={2021},
-  institution={Charles River Analytics Inc.}
+  institution={Charles River Analytics Inc.},
+  url={https://apps.dtic.mil/sti/citations/AD1145098}
 }
 
 @InProceedings{9533449,  
@@ -120,7 +122,9 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
 	abstract={Some of the most popular methods for improving the stability and performance of GANs involve constraining or regularizing the discriminator. In this paper we consider a largely overlooked regularization technique which we refer to as the Adversary's Assistant (AdvAs). We motivate this using a different perspective to that of prior work. Specifically, we consider a common mismatch between theoretical analysis and practice: analysis often assumes that the discriminator reaches its optimum on each iteration. In practice, this is essentially never true, often leading to poor gradient estimates for the generator. To address this, AdvAs is a penalty imposed on the generator based on the norm of the gradients used to train the discriminator. This encourages the generator to move towards points where the discriminator is optimal. We demonstrate the effect of applying AdvAs to several GAN objectives, datasets and network architectures. The results indicate a reduction in the mismatch between theory and practice and that AdvAs can lead to improvement of GAN training, as measured by FID scores.},  
 	doi={10.1109/IJCNN52387.2021.9533449},  
 	ISSN={2161-4407},  
-	month={July}
+	month={July},
+	url_ArXiv = {https://arxiv.org/abs/2010.01274},
+	url_Paper = {https://ieeexplore.ieee.org/document/9533449}
 }
 
 @InProceedings{pmlr-v139-warrington21a,
@@ -135,7 +139,7 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   month = 	 {18--24 Jul},
   publisher =    {PMLR},
   pdf = 	 {http://proceedings.mlr.press/v139/warrington21a/warrington21a.pdf},
-  url = 	 {https://proceedings.mlr.press/v139/warrington21a.html},
+  url_Paper = 	 {https://proceedings.mlr.press/v139/warrington21a.html},
   abstract = 	 {Policies for partially observed Markov decision processes can be efficiently learned by imitating expert policies generated using asymmetric information. Unfortunately, existing approaches for this kind of imitation learning have a serious flaw: the expert does not know what the trainee cannot see, and as a result may encourage actions that are sub-optimal or unsafe under partial information. To address this issue, we derive an update which, when applied iteratively to an expert, maximizes the expected reward of the trainee’s policy. Using this update, we construct a computationally efficient algorithm, adaptive asymmetric DAgger (A2D), that jointly trains the expert and trainee policies. We then show that A2D allows the trainee to safely imitate the modified expert, and outperforms policies learned either by imitating a fixed expert or through direct reinforcement learning.}
 }
 
@@ -149,12 +153,14 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   }
 
 @inproceedings{scibior2021imaginingcvprworkshop,
-  title={{I}magining {T}he {R}oad {A}head: Multi-Agent Trajectory Prediction via Differentiable Simulation - {\bf oral; best paper}},
+  title={{I}magining {T}he {R}oad {A}head: Multi-Agent Trajectory Prediction via Differentiable Simulation},
   author={Scibior, Adam and Lioutas, Vasileios and Reda, Daniele and Bateni, Peyman and Wood, Frank},
   booktitle={CVPR Workshop Workshop on Autonomous Driving: Perception, Prediction and Planning},
   year={2021}, 
   eprint={2104.11212},
-  archivePrefix={arXiv}
+  archivePrefix={arXiv},
+  url_ArXiv = {https://arxiv.org/abs/2104.11212},
+  abstract={We develop a deep generative model built on a fully differentiable simulator for multi-agent trajectory prediction. Agents are modeled with conditional recurrent variational neural networks (CVRNNs), which take as input an ego-centric birdview image representing the current state of the world and output an action, consisting of steering and acceleration, which is used to derive the subsequent agent state using a kinematic bicycle model. The full simulation state is then differentiably rendered for each agent, initiating the next time step. We achieve state-of-the-art results on the INTERACTION dataset, using standard neural architectures and a standard variational training objective, producing realistic multi-modal predictions without any ad-hoc diversity-inducing losses. We conduct ablation studies to examine individual components of the simulator, finding that both the kinematic bicycle model and the continuous feedback from the birdview image are crucial for achieving this level of performance. We name our model ITRA, for "Imagining the Road Ahead".}
   }
 
 @unpublished{scibior2021differentiable,
@@ -164,6 +170,7 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
       eprint={2106.10314},
       archivePrefix={arXiv},
       primaryClass={stat.ML},
+      url_ArXiv = {https://arxiv.org/abs/2106.10314},
       abstract={Particle filters are not compatible with automatic differentiation due to the presence of discrete resampling steps. While known estimators for the score function, based on Fisher's identity, can be computed using particle filters, up to this point they required manual implementation. In this paper we show that such estimators can be computed using automatic differentiation, after introducing a simple correction to the particle weights. This correction utilizes the stop-gradient operator and does not modify the particle filter operation on the forward pass, while also being cheap and easy to compute. Surprisingly, with the same correction automatic differentiation also produces good estimators for gradients of expectations under the posterior. We can therefore regard our method as a general recipe for making particle filters differentiable. We additionally show that it produces desired estimators for second-order derivatives and how to extend it to further reduce variance at the expense of additional computation.}
 }
 
