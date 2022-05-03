@@ -57,9 +57,9 @@
     pages     = {2796-2805},
     url_ArXiv = {https://arxiv.org/abs/2006.12245},
     url_Paper = {https://ieeexplore.ieee.org/document/9706775},
+    support = {D3M,LwLL},
     abstract={We develop a transductive meta-learning method that uses unlabelled instances to improve few-shot image classification performance. Our approach combines a regularized Mahalanobis-distance-based soft k-means clustering procedure with a modified state of the art neural adaptive feature extractor to achieve improved test-time classification accuracy using unlabelled data. We evaluate our method on transductive few-shot learning tasks, in which the goal is to jointly predict labels for query (test) examples given a set of support (training) examples. We achieve state of the art performance on the Meta-Dataset, mini-ImageNet and tiered-ImageNet benchmarks.}
 }
-
 
 @InProceedings{pmlr-v161-masrani21a,
   title = 	 {q-Paths: Generalizing the geometric annealing path using power means},
@@ -74,6 +74,7 @@
   publisher =    {PMLR},
   url_pdf = 	 {https://proceedings.mlr.press/v161/masrani21a/masrani21a.pdf},
   url_Paper = 	 {https://proceedings.mlr.press/v161/masrani21a.html},
+  url_ArXiv=     {https://arxiv.org/abs/2107.00745},
   abstract = 	 {Many common machine learning methods involve the geometric annealing path, a sequence of intermediate densities between two distributions of interest constructed using the geometric average. While alternatives such as the moment-averaging path have demonstrated performance gains in some settings, their practical applicability remains limited by exponential family endpoint assumptions and a lack of closed form energy function. In this work, we introduce $q$-paths, a family of paths which is derived from a generalized notion of the mean, includes the geometric and arithmetic mixtures as special cases, and admits a simple closed form involving the deformed logarithm function from nonextensive thermodynamics. Following previous analysis of the geometric path, we interpret our $q$-paths as corresponding to a $q$-exponential family of distributions, and provide a variational representation of intermediate densities as minimizing a mixture of $\alpha$-divergences to the endpoints. We show that small deviations away from the geometric path yield empirical gains for Bayesian inference using Sequential Monte Carlo and generative model evaluation using Annealed Importance Sampling.}
 }
 
@@ -124,7 +125,8 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
 	ISSN={2161-4407},  
 	month={July},
 	url_ArXiv = {https://arxiv.org/abs/2010.01274},
-	url_Paper = {https://ieeexplore.ieee.org/document/9533449}
+	url_Paper = {https://ieeexplore.ieee.org/document/9533449},
+	support = {D3M,ETALUMIS}
 }
 
 @InProceedings{pmlr-v139-warrington21a,
@@ -138,8 +140,9 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   series = 	 {Proceedings of Machine Learning Research},
   month = 	 {18--24 Jul},
   publisher =    {PMLR},
-  pdf = 	 {http://proceedings.mlr.press/v139/warrington21a/warrington21a.pdf},
+  url_pdf = 	 {http://proceedings.mlr.press/v139/warrington21a/warrington21a.pdf},
   url_Paper = 	 {https://proceedings.mlr.press/v139/warrington21a.html},
+  url_ArXiv={https://arxiv.org/abs/2012.15566},
   abstract = 	 {Policies for partially observed Markov decision processes can be efficiently learned by imitating expert policies generated using asymmetric information. Unfortunately, existing approaches for this kind of imitation learning have a serious flaw: the expert does not know what the trainee cannot see, and as a result may encourage actions that are sub-optimal or unsafe under partial information. To address this issue, we derive an update which, when applied iteratively to an expert, maximizes the expected reward of the trainee’s policy. Using this update, we construct a computationally efficient algorithm, adaptive asymmetric DAgger (A2D), that jointly trains the expert and trainee policies. We then show that A2D allows the trainee to safely imitate the modified expert, and outperforms policies learned either by imitating a fixed expert or through direct reinforcement learning.}
 }
 
@@ -148,21 +151,23 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   author={Scibior, Adam and Lioutas, Vasileios and Reda, Daniele and Bateni, Peyman and Wood, Frank},
     booktitle={IEEE Intelligent Transportation Systems Conference (ITSC)},
   year={2021}, 
-  eprint={2104.11212},
-  archivePrefix={arXiv}
+  url_ArXiv={https://arxiv.org/abs/2104.11212},
+  url_Paper = {https://ieeexplore.ieee.org/abstract/document/9565113}
+  support = {MITACS},
   }
 
 @inproceedings{scibior2021imaginingcvprworkshop,
   title={{I}magining {T}he {R}oad {A}head: Multi-Agent Trajectory Prediction via Differentiable Simulation},
   author={Scibior, Adam and Lioutas, Vasileios and Reda, Daniele and Bateni, Peyman and Wood, Frank},
-  booktitle={CVPR Workshop Workshop on Autonomous Driving: Perception, Prediction and Planning},
+  booktitle={CVPR Workshop on Autonomous Driving: Perception, Prediction and Planning},
   year={2021}, 
   eprint={2104.11212},
   archivePrefix={arXiv},
   url_ArXiv = {https://arxiv.org/abs/2104.11212},
+  support = {MITACS},
   abstract={We develop a deep generative model built on a fully differentiable simulator for multi-agent trajectory prediction. Agents are modeled with conditional recurrent variational neural networks (CVRNNs), which take as input an ego-centric birdview image representing the current state of the world and output an action, consisting of steering and acceleration, which is used to derive the subsequent agent state using a kinematic bicycle model. The full simulation state is then differentiably rendered for each agent, initiating the next time step. We achieve state-of-the-art results on the INTERACTION dataset, using standard neural architectures and a standard variational training objective, producing realistic multi-modal predictions without any ad-hoc diversity-inducing losses. We conduct ablation studies to examine individual components of the simulator, finding that both the kinematic bicycle model and the continuous feedback from the birdview image are crucial for achieving this level of performance. We name our model ITRA, for "Imagining the Road Ahead".}
   }
-
+  
 @unpublished{scibior2021differentiable,
       title={Differentiable Particle Filtering without Modifying the Forward Pass}, 
       author={Adam Scibior and Frank Wood},
@@ -193,30 +198,6 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   abstract={Sequential Monte Carlo (SMC) is a general-purpose methodology for recursive Bayesian inference, and is widely used in state space modeling and probabilistic programming. Its resample-move variant reduces the variance of posterior estimates by interleaving Markov chain Monte Carlo (MCMC) steps for particle “rejuvenation”; but this requires accessing all past observations and leads to linearly growing memory size and quadratic computation cost. Under the assumption of exchangeability, we introduce sequential core-set Monte Carlo (SCMC), which achieves constant space and linear time by rejuvenating based on sparse, weighted subsets of past data. In contrast to earlier approaches, which uniformly subsample or throw away observations, SCMC uses a novel online version of a state-of-the-art Bayesian core-set algorithm to incrementally construct a nonparametric, data- and model-dependent variational representation of the unnormalized target density. Experiments demonstrate significantly reduced approximation errors at negligible additional cost.}
 }
 
-@unpublished{scibior2021imagining,
-  title={Imagining The Road Ahead: Multi-Agent Trajectory Prediction via Differentiable Simulation},
-  author={Scibior, Adam and Lioutas, Vasileios and Reda, Daniele and Bateni, Peyman and Wood, Frank},
-  journal={arXiv preprint arXiv:2104.11212},
-  year={2021}, 
-  eprint={2104.11212},
-  archivePrefix={arXiv},
-  url_ArXiv={https://arxiv.org/abs/2104.11212},
-  url_Paper={https://arxiv.org/pdf/2104.11212.pdf},
-  support = {MITACS},
-  abstract = {We develop a deep generative model built on a fully differentiable simulator for multi-agent trajectory prediction. Agents are modeled with conditional recurrent variational neural networks (CVRNNs), which take as input an ego-centric birdview image representing the current state of the world and output an action, consisting of steering and acceleration, which is used to derive the subsequent agent state using a kinematic bicycle model. The full simulation state is then differentiably rendered for each agent, initiating the next time step. We achieve state-of-the-art results on the INTERACTION dataset, using standard neural architectures and a standard variational training objective, producing realistic multi-modal predictions without any ad-hoc diversity-inducing losses. We conduct ablation studies to examine individual components of the simulator, finding that both the kinematic bicycle model and the continuous feedback from the birdview image are crucial for achieving this level of performance. We name our model ITRA, for "Imagining the Road Ahead".}
-}
-
-@inproceedings{masrani2021qpaths,
-  title  = {q-Paths: Generalizing the Geometric Annealing Path using Power Means},
-  author = {Masrani*, V. and Brekelmans*, R. and Bui, T. and Nielsen, F. and Galstyan, A. and Ver Steeg, G. and Wood, F. and},
-  year   = {2021},
-  abbr={UAI},
-  booktitle = {37th Conference on Uncertainty in Artificial Intelligence},
-  url_ArXiv={https://arxiv.org/abs/2107.00745},
-  url_Paper={https://arxiv.org/pdf/2107.00745.pdf},
-  abstract={Many common machine learning methods involve the geometric annealing path, a sequence of intermediate densities between two distributions of interest constructed using the geometric average. While alternatives such as the moment-averaging path have demonstrated performance gains in some settings, their practical applicability remains limited by exponential family endpoint assumptions and a lack of closed form energy function. In this work, we introduce q-paths, a family of paths which is derived from a generalized notion of the mean, includes the geometric and arithmetic mixtures as special cases, and admits a simple closed form involving the deformed logarithm function from nonextensive thermodynamics. Following previous analysis of the geometric path, we interpret our q-paths as corresponding to a q-exponential family of distributions, and provide a variational representation of intermediate densities as minimizing a mixture of α-divergences to the endpoints. We show that small deviations away from the geometric path yield empirical gains for Bayesian inference using Sequential Monte Carlo and generative model evaluation using Annealed Importance Sampling.}
-}
-
 @inproceedings{brekelmans2020qpaths,
   title  = {Annealed Importance Sampling with q-Paths},
   author = {Brekelmans*, R. and Masrani*, V. and Thang, B. and Wood, F. and Galstyan, A. and Ver Steeg, G. and Nielsen, F.},
@@ -226,18 +207,6 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   url_ArXiv={https://arxiv.org/abs/2012.07823},
   url_Paper={https://arxiv.org/pdf/2012.07823.pdf},
   abstract={Annealed Importance Sampling (AIS) is the gold standard for estimating partition functions or marginal likelihoods, corresponding to importance sampling over a path of distributions between a tractable base and an unnormalized target. While AIS yields an unbiased estimator for any path, existing literature has been limited to the geometric mixture or moment-averaged paths associated with the exponential family and KL divergence. We explore AIS using q-paths, which include the geometric path as a special case and are related to the homogeneous power mean, deformed exponential family, and α-divergence.}
-}
-
-@unpublished{warrington2020robust,
-  title={Robust Asymmetric Learning in POMDPs},
-  author={Warrington, Andrew and Lavington, J Wilder and Scibior, Adam and Schmidt, Mark and Wood, Frank},
-  year={2020},
-  eprint={2012.15566},
-  archivePrefix={arXiv},
-  url_ArXiv={https://arxiv.org/abs/2012.15566},
-  url_Paper={https://arxiv.org/pdf/2012.15566.pdf},
-  support = {D3M},
-  abstract = {Policies for partially observed Markov decision processes can be efficiently learned by imitating policies for the corresponding fully observed Markov decision processes. Unfortunately, existing approaches for this kind of imitation learning have a serious flaw: the expert does not know what the trainee cannot see, and so may encourage actions that are sub-optimal, even unsafe, under partial information. We derive an objective to instead train the expert to maximize the expected reward of the imitating agent policy, and use it to construct an efficient algorithm, adaptive asymmetric DAgger (A2D), that jointly trains the expert and the agent. We show that A2D produces an expert policy that the agent can safely imitate, in turn outperforming policies learned by imitating a fixed expert.}
 }
 
 @unpublished{harvey2021image,
@@ -296,30 +265,16 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   year = {2020}, 
   editor = {Ryan P. Adams and Vibhav Gogate}, 
   volume = {115}, 
-  series = {Proceedings of Machine Learning Research}, 
+  series = {Proceedings of the 35th conference on Uncertainty in Artificial Intelligence (UAI)}, 
   address = {Tel Aviv, Israel}, 
   month = {22--25 Jul}, 
   publisher = {PMLR}, 
   url_Link = {http://proceedings.mlr.press/v115/le20a.html}, 
   url_Paper = {http://proceedings.mlr.press/v115/le20a/le20a.pdf}, 
+  url_ArXiv={https://arxiv.org/abs/1805.10469},
   support = {D3M},
   abstract = {Stochastic control-flow models (SCFMs) are a class of generative models that involve branching on choices from discrete random variables. Amortized gradient-based learning of SCFMs is challenging as most approaches targeting discrete variables rely on their continuous relaxations—which can be intractable in SCFMs, as branching on relaxations requires evaluating all (exponentially many) branching paths. Tractable alternatives mainly combine REINFORCE with complex control-variate schemes to improve the variance of naive estimators. Here, we revisit the reweighted wake-sleep (RWS) [5] algorithm, and through extensive evaluations, show that it outperforms current state-of-the-art methods in learning SCFMs. Further, in contrast to the importance weighted autoencoder, we observe that RWS learns better models and inference networks with increasing numbers of particles. Our results suggest that RWS is a competitive, often preferable, alternative for learning SCFMs.} 
   }
-
-@unpublished{MUN-20a,
-  title={Assisting the Adversary to Improve {GAN} Training}, 
-  author={Andreas Munk and William Harvey and Frank Wood},
-  year={2020},
-  eprint={2010.01274},
-  journal={arXiv preprint arXiv:2010.01274},
-  year={2020},
-  eid = {arXiv:2010.01274},
-  archivePrefix = {arXiv},
-  url_ArXiv={https://arxiv.org/abs/2010.01274},
-  url_Paper={https://arxiv.org/pdf/2010.01274.pdf},
-  support = {D3M,ETALUMIS},
-  abstract={We propose a method for improved training of generative adversarial networks (GANs). Some of the most popular methods for improving the stability and performance of GANs involve constraining or regularizing the discriminator. Our method, on the other hand, involves regularizing the generator. It can be used alongside existing approaches to GAN training and is simple and straightforward to implement. Our method is motivated by a common mismatch between theoretical analysis and practice: analysis often assumes that the discriminator reaches its optimum on each iteration. In practice, this is essentially never true, often leading to poor gradient estimates for the generator. To address this, we introduce the Adversary's Assistant (AdvAs). It is a theoretically motivated penalty imposed on the generator based on the norm of the gradients used to train the discriminator. This encourages the generator to move towards points where the discriminator is optimal. We demonstrate the effect of applying AdvAs to several GAN objectives, datasets and network architectures. The results indicate a reduction in the mismatch between theory and practice and that AdvAs can lead to improvement of GAN training, as measured by FID scores.}
-}
 
 @unpublished{NAD-20a,
   title={Uncertainty in Neural Processes}, 
@@ -361,34 +316,6 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   support = {D3M},
   bibbase_note = {PMLR 108:4441-4451},
   abstract = {We exploit minimally faithful inversion of graphical model structures to specify sparse continuous normalizing flows (CNFs) for amortized inference. We find that the sparsity of this factorization can be exploited to reduce the numbers of parameters in the neural network, adaptive integration steps of the flow, and consequently FLOPs at both training and inference time without decreasing performance in comparison to unconstrained flows. By expressing the structure inversion as a compilation pass in a probabilistic programming language, we are able to apply it in a novel way to models as complex as convolutional neural networks. Furthermore, we extend the training objective for CNFs in the context of inference amortization to the symmetric Kullback-Leibler divergence, and demonstrate its theoretical and practical advantages.}
-}
-
-@unpublished{HAR-20a,
-  title={Near-Optimal Glimpse Sequences for Improved Hard Attention Neural Network Training},
-  author={Harvey, William and Teng, Michael and Wood, Frank},
-  journal={arXiv preprint arXiv:1906.05462},
-  year={2019},
-  eid = {arXiv:1906.05462},
-  archivePrefix = {arXiv},
-  eprint = {1906.05462},
-  url_ArXiv={https://arxiv.org/abs/1906.05462},
-  url_Paper={https://arxiv.org/pdf/1906.05462.pdf},
-  support = {D3M,LwLL},
-  abstract={Hard visual attention is a promising approach to reduce the computational burden of modern computer vision methodologies. Hard attention mechanisms are typically non-differentiable. They can be trained with reinforcement learning but the high-variance training this entails hinders more widespread application. We show how hard attention for image classification can be framed as a Bayesian optimal experimental design (BOED) problem. From this perspective, the optimal locations to attend to are those which provide the greatest expected reduction in the entropy of the classification distribution. We introduce methodology from the BOED literature to approximate this optimal behaviour, and use it to generate `near-optimal' sequences of attention locations. We then show how to use such sequences to partially supervise, and therefore speed up, the training of a hard attention mechanism. Although generating these sequences is computationally expensive, they can be reused by any other networks later trained on the same task.}
-}
-
-@unpublished{BAT-20a,
-  title={Improving Few-Shot Visual Classification with Unlabelled Examples},
-  author={Bateni, Peyman and Barber, Jarred and van de Meent, Jan-Willem and Wood, Frank},
-  journal={arXiv preprint},
-  year={2020},
-  eid = {arXiv:2006.12245},
-  archivePrefix = {arXiv},
-  eprint = {2006.12245},
-  url_Paper={https://arxiv.org/pdf/2006.12245.pdf},
-  url_ArXiv={https://arxiv.org/abs/2006.12245},
-  support = {D3M,LwLL},
-  abstract={We propose a transductive meta-learning method that uses unlabelled instances to improve few-shot image classification performance. Our approach combines a regularized Mahalanobis-distance-based soft k-means clustering procedure with a state of the art neural adaptive feature extractor to achieve improved test-time classification accuracy using unlabelled data. We evaluate our method on transductive few-shot learning tasks, in which the goal is to jointly predict labels for query (test) examples given a set of support (training) examples. We achieve new state of the art in-domain performance on Meta-Dataset, and improve accuracy on mini- and tiered-ImageNet as compared to other conditional neural adaptive methods that use the same pre-trained feature extractor.}  
 }
 
 @inproceedings{NAD-20,
@@ -593,19 +520,6 @@ We show that performing inference in this space can be viewed as rejection sampl
   abstact={We introduce two approaches for conducting efficient Bayesian inference in stochastic simulators containing nested stochastic sub-procedures, i.e., internal procedures for which the density cannot be calculated directly such as rejection sampling loops. The resulting class of simulators are used extensively throughout the sciences and can be interpreted as probabilistic generative models. However, drawing inferences from them poses a substantial challenge due to the inability to evaluate even their unnormalised density, preventing the use of many standard inference procedures like Markov Chain Monte Carlo (MCMC). To address this, we introduce inference algorithms based on a two-step approach that first approximates the conditional densities of the individual sub-procedures, before using these approximations to run MCMC methods on the full program. Because the sub-procedures can be dealt with separately and are lower-dimensional than that of the overall problem, this two-step process allows them to be isolated and thus be tractably dealt with, without placing restrictions on the overall dimensionality of the problem. We demonstrate the utility of our approach on a simple, artificially constructed simulator.}
 }
 
-@unpublished{NAD-19,
-  title={Amortized rejection sampling in universal probabilistic programming},
-  author={Naderiparizi, S and Ścibior, A and Munk, A and Ghadiri, M and Baydin, AG and Gram-Hansen, B and Schroeder de Witt, C and Zinkov, R and Torr, PHS and Rainforth, T and Whye Teh, Y and Wood, F},
-  year={2019},
-  archiveprefix = {arXiv},
-  eprint = {1910.09056},
-  support = {D3M,ETALUMIS},
-  url_Paper={https://arxiv.org/pdf/1910.09056.pdf},
-  url_ArXiv={https://arxiv.org/abs/1910.09056},
-  abstract={Existing approaches to amortized inference in probabilistic programs with unbounded loops can produce estimators with infinite variance. An instance of this is importance sampling inference in programs that explicitly include rejection sampling as part of the user-programmed generative procedure. In this paper we develop a new and efficient amortized importance sampling estimator. We prove finite variance of our estimator and empirically demonstrate our method's correctness and efficiency compared to existing alternatives on generative programs containing rejection sampling loops and discuss how to implement our method in a generic probabilistic programming framework.}
-}
-
-
 @unpublished{TEN-19,
   title={Imitation Learning of Factored Multi-agent Reactive Models},
   author={Teng, Michael and Le, Tuan Anh and Scibior, Adam and Wood, Frank},
@@ -687,19 +601,6 @@ We show that performing inference in this space can be viewed as rejection sampl
   url_Paper={https://arxiv.org/pdf/1903.02482.pdf},
   url_ArXiv={https://arxiv.org/abs/1903.02482},
   abstract={We develop a new Low-level, First-order Probabilistic Programming Language (LF-PPL) suited for models containing a mix of continuous, discrete, and/or piecewise-continuous variables. The key success of this language and its compilation scheme is in its ability to automatically distinguish parameters the density function is discontinuous with respect to, while further providing runtime checks for boundary crossings. This enables the introduction of new inference engines that are able to exploit gradient information, while remaining efficient for models which are not everywhere differentiable. We demonstrate this ability by incorporating a discontinuous Hamiltonian Monte Carlo (DHMC) inference engine that is able to deliver automated and efficient inference for non-differentiable models. Our system is backed up by a mathematical formalism that ensures that any model expressed in this language has a density with measure zero discontinuities to maintain the validity of the inference engine.}
-}
-
-@inproceedings{LE-19,
-  title={Revisiting Reweighted Wake-Sleep for Models with Stochastic Control Flow},
-  author={Le, Tuan Anh and Kosiorek, Adam R and Siddharth, N and Teh, Yee Whye and Wood, Frank},
-  year={2019},
-  booktitle={Proceedings of the conference on Uncertainty in Artificial Intelligence (UAI)},
-  archiveprefix = {arXiv},
-  eprint = {1805.10469},
-  support = {D3M},
-  url_Link={https://arxiv.org/abs/1805.10469},
-  url_Paper={https://arxiv.org/pdf/1805.10469.pdf},
-  abstract={Stochastic control-flow models (SCFMs) are a class of generative models that involve branching on choices from discrete random variables. Amortized gradient-based learning of SCFMs is challenging as most approaches targeting discrete variables rely on their continuous relaxations---which can be intractable in SCFMs, as branching on relaxations requires evaluating all (exponentially many) branching paths. Tractable alternatives mainly combine REINFORCE with complex control-variate schemes to improve the variance of naive estimators. Here, we revisit the reweighted wake-sleep (RWS) (Bornschein and Bengio, 2015) algorithm, and through extensive evaluations, show that it outperforms current state-of-the-art methods in learning SCFMs. Further, in contrast to the importance weighted autoencoder, we observe that RWS learns better models and inference networks with increasing numbers of particles. Our results suggest that RWS is a competitive, often preferable, alternative for learning SCFMs.}
 }
 
 @inproceedings{TEN-18,
