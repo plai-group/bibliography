@@ -1,3 +1,16 @@
+@article{LIO-22,
+	title={{TITRATED}: Learned Human Driving Behavior without Infractions via Amortized Inference},
+	author={Lioutas, Vasileios and Scibior, Adam and Wood, Frank},
+	journal={Transactions on Machine Learning Research (TMLR)},
+	year={2022},
+	url_Paper={https://openreview.net/forum?id=M8D5iZsnrO},
+	url_pdf = {https://openreview.net/pdf?id=M8D5iZsnrO},
+	url_Presentation={https://www.youtube.com/watch?v=AMeZtzQxhX4},
+	support = {MITACS},
+	abstract = {Models of human driving behavior have long been used for prediction in autonomous vehicles, but recently have also started being used to create non-playable characters for driving simulations. While such models are in many respects realistic, they tend to suffer from unacceptably high rates of driving infractions, such as collisions or off-road driving, particularly when deployed in map locations with road geometries dissimilar to the training dataset. In this paper we present a novel method for fine-tuning a foundation model of human driving behavior to novel locations where human demonstrations are not available which reduces the incidence of such infractions. The method relies on inference in the foundation model to generate infraction-free trajectories as well as additional penalties applied when fine-tuning the amortized inference behavioral model. We demonstrate this "titration" technique using the ITRA foundation behavior model trained on the INTERACTION dataset when transferring to CARLA map locations. We demonstrate a 76-86% reduction in infraction rate and provide evidence that further gains are possible with more computation or better inference algorithms.},
+}
+
+
 @unpublished{,
 	doi = {10.48550/ARXIV.2205.09930},
 	url_ArXiv = {https://arxiv.org/abs/2205.09930},
