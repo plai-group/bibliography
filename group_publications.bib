@@ -1,3 +1,16 @@
+@inproceedings{
+lioutas2023critic,
+title={{Critic Sequential Monte Carlo}},
+author={Lioutas, Vasileios and Lavington, Jonathan Wilder and Sefas, Justice and Niedoba, Matthew and Liu, Yunpeng and Zwartsenberg, Berend and Dabiri, Setareh and Wood, Frank and Scibior, Adam},
+booktitle={The Eleventh International Conference on Learning Representations (ICLR)},
+year={2023},
+url_Link={https://openreview.net/forum?id=ObtGcyKmwna},
+url_ArXiv = {https://arxiv.org/abs/2205.15460}, 
+url_pdf = {https://arxiv.org/pdf/2205.15460.pdf},
+abstract = {We introduce CriticSMC, a new algorithm for planning as inference built from a composition of sequential Monte Carlo with learned Soft-Q function heuristic factors. These heuristic factors, obtained from parametric approximations of the marginal likelihood ahead, more effectively guide SMC towards the desired target distribution, which is particularly helpful for planning in environments with hard constraints placed sparsely in time. Compared with previous work, we modify the placement of such heuristic factors, which allows us to cheaply propose and evaluate large numbers of putative action particles, greatly increasing inference and planning efficiency. CriticSMC is compatible with informative priors, whose density function need not be known, and can be used as a model-free control algorithm. Our experiments on collision avoidance in a high-dimensional simulated driving task show that CriticSMC significantly reduces collision rates at a low computational cost while maintaining realism and diversity of driving behaviors across vehicles and environment scenarios.},
+}
+
+
 @InBook{10.1145/3501714.3501753,
 title = {Probabilistic Programming Languages: Independent Choices and Deterministic Systems},
 author = {Poole, David and Wood, Frank},
@@ -84,20 +97,6 @@ url_Paper={https://ieeexplore.ieee.org/abstract/document/9892112},
 	year = {2022},
 	copyright = {arXiv.org perpetual, non-exclusive license},
 	abstract = {We present a framework for video modeling based on denoising diffusion probabilistic models that produces long-duration video completions in a variety of realistic environments. We introduce a generative model that can at test-time sample any arbitrary subset of video frames conditioned on any other subset and present an architecture adapted for this purpose. Doing so allows us to efficiently compare and optimize a variety of schedules for the order in which frames in a long video are sampled and use selective sparse and long-range conditioning on previously sampled frames. We demonstrate improved video modeling over prior work on a number of datasets and sample temporally coherent videos over 25 minutes in length. We additionally release a new video modeling dataset and semantically meaningful metrics based on videos generated in the CARLA self-driving car simulator.}, 
-}
-
-
-@unpublished{,
-	doi = {10.48550/ARXIV.2205.15460},
-	url_ArXiv = {https://arxiv.org/abs/2205.15460}, 
-	url_pdf = {https://arxiv.org/pdf/2205.15460.pdf},
-	author = {Lioutas, Vasileios and Lavington, Jonathan Wilder and Sefas, Justice and Niedoba, Matthew and Liu, Yunpeng and Zwartsenberg, Berend and Dabiri, Setareh and Wood, Frank and Scibior, Adam},
-	keywords = {Machine Learning (stat.ML), Machine Learning (cs.LG), FOS: Computer and information sciences, FOS: Computer and information sciences},
-	title = {Critic Sequential Monte Carlo},
-	publisher = {arXiv},
-	year = {2022},
-	copyright = {Creative Commons Attribution Share Alike 4.0 International},
-	abstract = {We introduce CriticSMC, a new algorithm for planning as inference built from a novel composition of sequential Monte Carlo with learned soft-Q function heuristic factors. This algorithm is structured so as to allow using large numbers of putative particles leading to efficient utilization of computational resource and effective discovery of high reward trajectories even in environments with difficult reward surfaces such as those arising from hard constraints. Relative to prior art our approach is notably still compatible with model-free reinforcement learning in the sense that the implicit policy we produce can be used at test time in the absence of a world model. Our experiments on self-driving car collision avoidance in simulation demonstrate improvements against baselines in terms of infraction minimization relative to computational effort while maintaining diversity and realism of found trajectories.},
 }
 
 
