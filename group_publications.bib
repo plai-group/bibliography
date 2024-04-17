@@ -1,14 +1,37 @@
+@InProceedings{
+	title={Uncertain Evidence in Probabilistic Models and Stochastic Simulators},
+	author={Munk, Andreas and Mead, Alexander and Wood, Frank},
+	booktitle={Proceedings of the 40th International Conference on Machine Learning, PMLR 202:25486-25500, 2023},
+	year={2023},
+	url_Paper={https://proceedings.mlr.press/v202/munk23a.html},
+	url_pdf={https://proceedings.mlr.press/v202/munk23a/munk23a.pdf},
+	url_ArXiv={https://arxiv.org/abs/2210.12236},
+	abstract={We consider the problem of performing Bayesian inference in probabilistic models where observations are accompanied by uncertainty, referred to as "uncertain evidence." We explore how to interpret uncertain evidence, and by extension the importance of proper interpretation as it pertains to inference about latent variables. We consider a recently-proposed method "distributional evidence" as well as revisit two older methods: Jeffrey's rule and virtual evidence. We devise guidelines on how to account for uncertain evidence and we provide new insights, particularly regarding consistency. To showcase the impact of different interpretations of the same uncertain evidence, we carry out experiments in which one interpretation is defined as "correct." We then compare inference results from each different interpretation illustrating the importance of careful consideration of uncertain evidence.},
+}
+
 @unpublished{,
-  doi = {10.48550/ARXIV.2210.12236}, 
-  url_ArXiv = {https://arxiv.org/abs/2210.12236},
-  Url_pdf = {https://arxiv.org/pdf/2210.12236.pdf}, 
-  author = {Munk, Andreas and Mead, Alexander and Wood, Frank},
-  keywords = {Machine Learning (stat.ML), Machine Learning (cs.LG), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Uncertain Evidence in Probabilistic Models and Stochastic Simulators},
-  publisher = {arXiv},
-  year = {2022},
-  copyright = {Creative Commons Attribution 4.0 International},
-  Abstract = {We consider the problem of performing Bayesian inference in probabilistic models where observations are accompanied by uncertainty, referred to as "uncertain evidence." We explore how to interpret uncertain evidence, and by extension the importance of proper interpretation as it pertains to inference about latent variables. We consider a recently-proposed method "distributional evidence" as well as revisit two older methods: Jeffrey's rule and virtual evidence. We devise guidelines on how to account for uncertain evidence and we provide new insights, particularly regarding consistency. To showcase the impact of different interpretations of the same uncertain evidence, we carry out experiments in which one interpretation is defined as "correct." We then compare inference results from each different interpretation illustrating the importance of careful consideration of uncertain evidence.},
+	doi={10.48550/arXiv.2305.11856},
+	url_ArXiv={https://arxiv.org/abs/2305.11856},
+	url_pdf={https://arxiv.org/pdf/2305.11856.pdf},
+	author={Liu, Yunpeng and Lioutas, Vasileios and Lavington, Jonathan Wilder and Niedoba, Matthew and Sefas, Justice and Dabiri, Setareh and Green, Dylan and Liang, Xiaoxuan and Zwartsenberg, Berend and Ścibior, Adam and Wood, Frank},
+	title={Video Killed the HD-Map: Predicting Multi-Agent Behavior Directly From Aerial Images},
+	publisher={arXiv},
+	year={2023},
+	copyright={arXiv.org perpetual, non-exclusive licence},
+	abstract={The development of algorithms that learn multi-agent behavioral models using human demonstrations has led to increasingly realistic simulations in the field of autonomous driving. In general, such models learn to jointly predict trajectories for all controlled agents by exploiting road context information such as drivable lanes obtained from manually annotated high-definition (HD) maps. Recent studies show that these models can greatly benefit from increasing the amount of human data available for training. However, the manual annotation of HD maps which is necessary for every new location puts a bottleneck on efficiently scaling up human traffic datasets. We propose an aerial image-based map (AIM) representation that requires minimal annotation and provides rich road context information for traffic agents like pedestrians and vehicles. We evaluate multi-agent trajectory prediction using the AIM by incorporating it into a differentiable driving simulator as an image-texture-based differentiable rendering module. Our results demonstrate competitive multi-agent trajectory prediction performance especially for pedestrians in the scene when using our AIM representation as compared to models trained with rasterized HD maps.},
+}
+
+
+@unpublished{,
+	doi={10.48550/arXiv.2303.16187},
+	url_ArXiv={https://arxiv.org/abs/2303.16187},
+	url_pdf={https://arxiv.org/pdf/2303.16187v2.pdf},
+	author={Harvey, William and Wood, Frank},
+	title={Visual Chain-of-Thought Diffusion Models},
+	publisher={arXiv},
+	year={2023},
+	copyright={arXiv.org perpetual, non-exclusive licence},
+	abstract={Recent progress with conditional image diffusion models has been stunning, and this holds true whether we are speaking about models conditioned on a text description, a scene layout, or a sketch. Unconditional image diffusion models are also improving but lag behind, as do diffusion models which are conditioned on lower-dimensional features like class labels. We propose to close the gap between conditional and unconditional models using a two-stage sampling procedure. In the first stage we sample an embedding describing the semantic content of the image. In the second stage we sample the image conditioned on this embedding and then discard the embedding. Doing so lets us leverage the power of conditional diffusion models on the unconditional generation task, which we show improves FID by 25 − 50% compared to standard unconditional generation. },
 }
 
 
