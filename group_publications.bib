@@ -11,6 +11,17 @@
 	abstract={The maximum likelihood principle advocates parameter estimation via optimization of the data likelihood function. Models estimated in this way can exhibit a variety of generalization characteristics dictated by, e.g. architecture, parameterization, and optimization bias. This work addresses model learning in a setting where there further exists side-information in the form of an oracle that can label samples as being outside the support of the true data generating distribution. Specifically we develop a new denoising diffusion probabilistic modeling (DDPM) methodology, Gen-neG, that leverages this additional side-information. Our approach builds on generative adversarial networks (GANs) and discriminator guidance in diffusion models to guide the generation process towards the positive support region indicated by the oracle. We empirically establish the utility of Gen-neG in applications including collision avoidance in self-driving simulators and safety-guarded human motion generation.},
 }
 
+@InProceedings{
+weilbach2023scaling,
+	title={Scaling Graphically Structured Diffusion Models},
+	author={Weilbach, Christian Dietrich and Harvey, William and Shirzad, Hamed and Wood, Frank},
+	booktitle={ICML 2023 Workshop on Structured Probabilistic Inference {\&} Generative Modeling},
+	year={2023},
+	url_Paper={https://openreview.net/forum?id=pzH65nCyCN},
+	url_pdf={https://openreview.net/pdf?id=pzH65nCyCN},
+	abstract={Applications of the recently introduced graphically structured diffusion model (GSDM) family show that sparsifying the transformer attention mechanism within a diffusion model and meta-training on a variety of conditioning tasks can yield an efficiently learnable diffusion model artifact that is capable of flexible, in the sense of observing different subsets of variables at test-time, amortized conditioning in probabilistic graphical models. While extremely promising in terms of applicability and utility, implementations of GSDMs prior to this work were not scalable beyond toy graphical model sizes. We overcome this limitation by describing and and solving two scaling issues related to GSDMs; one engineering and one methodological. We additionally propose a new benchmark problem of weight inference for a convolutional neural network applied to  MNIST.},
+}
+
 
 @InProceedings{,
 	title={Uncertain Evidence in Probabilistic Models and Stochastic Simulators},
