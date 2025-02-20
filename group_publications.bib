@@ -1,4 +1,29 @@
 @unpublished{,
+	doi={10.48550/arXiv:2501.12408},
+	url_ArXiv={https://arxiv.org/abs/2501.12408},
+	url_pdf={https://arxiv.org/pdf/2501.12408},
+	author={Lioutas, Vasileios and Scribior, Adam and Niedoba, Matthew and Zwartsenberg, Berend and Wood, Frank},
+	title={Control-ITRA: Controlling the Behavior of a Driving Model},
+	publisher={arXiv},
+	year={2025},
+	copyright={arXiv.org perpetual, non-exclusive licence},
+	abstract={Simulating realistic driving behavior is crucial for developing and testing autonomous systems in complex traffic environments. Equally important is the ability to control the behavior of simulated agents to tailor scenarios to specific research needs and safety considerations. This paper extends the general-purpose multi-agent driving behavior model ITRA (Scibior et al., 2021), by introducing a method called Control-ITRA to influence agent behavior through waypoint assignment and target speed modulation. By conditioning agents on these two aspects, we provide a mechanism for them to adhere to specific trajectories and indirectly adjust their aggressiveness. We compare different approaches for integrating these conditions during training and demonstrate that our method can generate controllable, infraction-free trajectories while preserving realism in both seen and unseen locations.},
+}
+
+@unpublished{,
+	doi={10.48550/arXiv:2502.09587},
+	url_ArXiv={https://arxiv.org/abs/2502.09587},
+	url_pdf={https://arxiv.org/pdf/2502.09587},
+	author={Liu, Yunpeng and Niedoba, Matthew and Harvey, William and Scribior, Adam and Zwartsenberg, Berend and Wood, Frank},
+	title={Rolling Ahead Diffusion for Traffic Scene Simulation},
+	publisher={arXiv},
+	year={2025},
+	copyright={arXiv.org perpetual, non-exclusive licence},
+	abstract={Realistic driving simulation requires that NPCs not only mimic natural driving behaviors but also react to the behavior of other simulated agents. Recent developments in diffusion-based scenario generation focus on creating diverse and realistic traffic scenarios by jointly modelling the motion of all the agents in the scene. However, these traffic scenarios do not react when the motion of agents deviates from their modelled trajectories. For example, the ego-agent can be controlled by a stand along motion planner. To produce reactive scenarios with joint scenario models, the model must regenerate the scenario at each timestep based on new observations in a Model Predictive Control (MPC) fashion. Although reactive, this method is time-consuming, as one complete possible future for all NPCs is generated per simulation step. Alternatively, one can utilize an autoregressive model (AR) to predict only the immediate next-step future for all NPCs. Although faster, this method lacks the capability for advanced planning. We present a rolling diffusion based traffic scene generation model which mixes the benefits of both methods by predicting the next step future and simultaneously predicting partially noised further future steps at the same time. We show that such model is efficient compared to diffusion model based AR, achieving a beneficial compromise between reactivity and computational efficiency.},
+}
+
+
+@unpublished{,
 	doi={10.48550/arXiv.2411.19339},
 	url_ArXiv={https://arxiv.org/abs/2411.19339},
 	url_pdf={https://arxiv.org/pdf/2411.19339},
