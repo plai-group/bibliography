@@ -1,0 +1,48 @@
+name: Sync Google Scholar to BibTeX
+
+on:
+  schedule:
+    # Run every Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  sync-scholar:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install scholarly bibtexparser
+      
+      - name: Fetch publications from Google Scholar
+        run: |
+          python scripts/sync_scholar.py
+      
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code group_publications.bib || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add group_publications.bib
+          git commit -m "Auto-sync: Update publications from Google Scholar"
+          git push
+      
+      - name: No changes detected
+        if: steps.git-check.outputs.changed != 'true'
+        run: echo "No changes to publications"
