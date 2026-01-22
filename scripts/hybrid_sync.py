@@ -1,17 +1,51 @@
 #!/usr/bin/env python3
 
 import requests
-import bibtexparser
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.bibdatabase import BibDatabase
+import re
 import sys
 import os
 import time
-import re
 
 INPUT_FILE = "publications_to_add.txt"
 EXISTING_BIB = "group_publications.bib"
 OUTPUT_FILE = "group_publications.bib"
+
+# ===== PARSE BIB FILE MANUALLY =====
+def parse_bib_entries(content):
+    """Parse BibTeX entries without using bibtexparser"""
+    entries = []
+    
+    # Find all entries with pattern @type{key,
+    pattern = r'(@\w+)\{([^,]+),([^}]+(?:\{[^}]*\}[^}]*)*)\}'
+    
+    for match in re.finditer(pattern, content, re.DOTALL):
+        entry_type = match.group(1)
+        citation_key = match.group(2).strip()
+        entry_content = match.group(3)
+        
+        # Extract fields
+        fields = {}
+        fields['ENTRYTYPE'] = entry_type.replace('@', '')
+        fields['ID'] = citation_key
+        
+        # Extract doi
+        doi_match = re.search(r'doi\s*=\s*\{([^}]+)\}', entry_content, re.IGNORECASE)
+        if doi_match:
+            fields['doi'] = doi_match.group(1).strip()
+        
+        # Extract arxiv
+        arxiv_match = re.search(r'arxiv\s*=\s*\{([^}]+)\}', entry_content, re.IGNORECASE)
+        if not arxiv_match:
+            arxiv_match = re.search(r'eprint\s*=\s*\{([^}]+)\}', entry_content, re.IGNORECASE)
+        if arxiv_match:
+            fields['arxiv'] = arxiv_match.group(1).strip()
+        
+        # Store the full entry text for later
+        fields['_full_text'] = match.group(0)
+        
+        entries.append(fields)
+    
+    return entries, content
 
 # ===== IDENTIFY INPUT TYPE =====
 def identify_input(input_str):
@@ -187,8 +221,8 @@ def fetch_from_arxiv(arxiv_id):
         print(f"    Error: {e}")
         return None
 
-# ===== CREATE BIBTEX ENTRY =====
-def create_bibtex_entry(metadata):
+# ===== CREATE BIBTEX TEXT =====
+def create_bibtex_text(metadata):
     authors = metadata['author'].split(' and ')
     if authors and authors[0]:
         surname = authors[0].strip().split()[-1].lower()
@@ -205,110 +239,33 @@ def create_bibtex_entry(metadata):
     
     citation_key = f"{surname}-{title_key}-{metadata['year']}"
     
-    entry = {
-        'ENTRYTYPE': metadata['entry_type'],
-        'ID': citation_key,
-        'title': metadata['title'],
-        'author': metadata['author'],
-        'year': metadata['year'],
-    }
+    entry_lines = [f"@{metadata['entry_type']}{{{citation_key},"]
+    entry_lines.append(f"\ttitle = {{{metadata['title']}}},")
+    entry_lines.append(f"\tauthor = {{{metadata['author']}}},")
+    entry_lines.append(f"\tyear = {{{metadata['year']}}},")
     
     if metadata['identifier_type'] == 'doi':
-        entry['doi'] = metadata['identifier']
+        entry_lines.append(f"\tdoi = {{{metadata['identifier']}}},")
     elif metadata['identifier_type'] == 'arxiv':
-        entry['arxiv'] = metadata['identifier']
+        entry_lines.append(f"\tarxiv = {{{metadata['identifier']}}},")
     
     if metadata['venue']:
-        entry[metadata['venue_field']] = metadata['venue']
+        entry_lines.append(f"\t{metadata['venue_field']} = {{{metadata['venue']}}},")
     
     if metadata['url']:
-        entry['url'] = metadata['url']
+        entry_lines.append(f"\turl = {{{metadata['url']}}},")
     
-    if metadata.get('pdf_url'):
-        entry['url_pdf'] = metadata['pdf_url']
+    if metadata['pdf_url']:
+        entry_lines.append(f"\turl_pdf = {{{metadata['pdf_url']}}},")
     
     if metadata['abstract']:
-        entry['abstract'] = metadata['abstract']
+        # Escape special chars
+        abstract_clean = metadata['abstract'].replace('{', '\\{').replace('}', '\\}')
+        entry_lines.append(f"\tabstract = {{{abstract_clean}}},")
     
-    return {k: v for k, v in entry.items() if v}
-
-# ===== LOAD EXISTING BIBLIOGRAPHY =====
-def load_existing_bib():
-    if not os.path.exists(EXISTING_BIB):
-        return BibDatabase()
+    entry_lines.append("}")
     
-    with open(EXISTING_BIB, 'r', encoding='utf-8') as f:
-        parser = bibtexparser.bparser.BibTexParser()
-        return parser.parse_file(f)
-
-# ===== MERGE ENTRIES =====
-def merge_entries(existing_db, new_entries):
-    existing_identifiers = {}
-    
-    for i, entry in enumerate(existing_db.entries):
-        if 'doi' in entry:
-            doi = entry['doi'].lower()
-            existing_identifiers[('doi', doi)] = i
-            
-            # Check if DOI is actually an arXiv DOI (10.48550/arXiv.XXXX)
-            arxiv_match = re.search(r'10\.48550/arxiv\.(\d{4}\.\d+)', doi, re.IGNORECASE)
-            if arxiv_match:
-                arxiv_id = arxiv_match.group(1)
-                existing_identifiers[('arxiv', arxiv_id.lower())] = i
-        
-        if 'arxiv' in entry:
-            arxiv_id = entry['arxiv'].lower()
-            existing_identifiers[('arxiv', arxiv_id)] = i
-    
-    added = 0
-    updated = 0
-    
-    for new_entry in new_entries:
-        identifier_type = None
-        identifier = None
-        
-        if 'doi' in new_entry:
-            identifier_type = 'doi'
-            identifier = new_entry['doi'].lower()
-        elif 'arxiv' in new_entry:
-            identifier_type = 'arxiv'
-            identifier = new_entry['arxiv'].lower()
-        
-        key = (identifier_type, identifier) if identifier_type else None
-        
-        if key and key in existing_identifiers:
-            idx = existing_identifiers[key]
-            existing_db.entries[idx] = new_entry
-            updated += 1
-            print(f"  UPDATED: {new_entry['title'][:60]}")
-        else:
-            existing_db.entries.append(new_entry)
-            added += 1
-            print(f"  ADDED: {new_entry['title'][:60]}")
-    
-    return added, updated
-
-# ===== WRITE OUTPUT =====
-def write_output(db):
-    db.entries.sort(
-        key=lambda x: (
-            -int(x.get('year', 0)) if str(x.get('year', '')).isdigit() else 0,
-            x.get('title', '')
-        )
-    )
-    
-    writer = BibTexWriter()
-    writer.indent = '\t'
-    writer.order_entries_by = None
-    
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        f.write(writer.write(db))
-
-# ===== CLEAR INPUT LIST =====
-def clear_input_list():
-    with open(INPUT_FILE, 'w') as f:
-        f.write("# Add DOIs, arXiv IDs, or URLs here, one per line\n")
-        f.write("# Lines starting with # are ignored\n")
+    return '\n'.join(entry_lines)
 
 # ===== MAIN =====
 def main():
@@ -319,10 +276,36 @@ def main():
     inputs = load_inputs()
     print(f"Found {len(inputs)} input(s) to process\n")
     
-    existing_db = load_existing_bib()
-    print(f"Loaded {len(existing_db.entries)} existing entries\n")
+    # Read existing file as text
+    if os.path.exists(EXISTING_BIB):
+        with open(EXISTING_BIB, 'r', encoding='utf-8') as f:
+            existing_content = f.read()
+        existing_entries, _ = parse_bib_entries(existing_content)
+        print(f"Loaded {len(existing_entries)} existing entries\n")
+    else:
+        existing_content = ""
+        existing_entries = []
     
-    new_entries = []
+    # Build identifier map
+    identifier_map = {}
+    for i, entry in enumerate(existing_entries):
+        if 'doi' in entry:
+            doi = entry['doi'].lower()
+            identifier_map[('doi', doi)] = i
+            
+            # Check for arXiv DOI
+            arxiv_match = re.search(r'10\.48550/arxiv\.(\d{4}\.\d+)', doi, re.IGNORECASE)
+            if arxiv_match:
+                arxiv_id = arxiv_match.group(1)
+                identifier_map[('arxiv', arxiv_id.lower())] = i
+        
+        if 'arxiv' in entry:
+            arxiv_id = entry['arxiv'].lower()
+            identifier_map[('arxiv', arxiv_id)] = i
+    
+    # Fetch new entries
+    new_entries_text = []
+    updated_indices = set()
     failed = 0
     
     for input_str in inputs:
@@ -343,31 +326,56 @@ def main():
             continue
         
         if metadata:
-            entry = create_bibtex_entry(metadata)
-            new_entries.append(entry)
+            # Check if exists
+            key = (metadata['identifier_type'], metadata['identifier'].lower())
+            
+            if key in identifier_map:
+                idx = identifier_map[key]
+                # Mark for replacement
+                updated_indices.add(idx)
+                print(f"  UPDATED: {metadata['title'][:60]}")
+            else:
+                print(f"  ADDED: {metadata['title'][:60]}")
+            
+            # Generate new entry text
+            new_entry_text = create_bibtex_text(metadata)
+            new_entries_text.append((key, new_entry_text))
+            
             time.sleep(1)
         else:
-            print(f"  WARNING: Could not fetch metadata")
             failed += 1
     
-    if not new_entries:
+    if not new_entries_text:
         print("\nNo valid entries fetched")
         sys.exit(0)
     
-    print(f"\n{'='*70}")
-    added, updated = merge_entries(existing_db, new_entries)
+    # Build new content
+    output_lines = []
     
-    write_output(existing_db)
+    # Add existing entries (except updated ones)
+    for i, entry in enumerate(existing_entries):
+        if i not in updated_indices:
+            output_lines.append(entry['_full_text'])
     
-    clear_input_list()
+    # Add new/updated entries
+    for _, entry_text in new_entries_text:
+        output_lines.append(entry_text)
+    
+    # Write output
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        f.write('\n\n'.join(output_lines))
+    
+    # Clear input list
+    with open(INPUT_FILE, 'w') as f:
+        f.write("# Add DOIs, arXiv IDs, or URLs here, one per line\n")
+        f.write("# Lines starting with # are ignored\n")
     
     print(f"\n{'='*70}")
     print(f"SUMMARY")
     print(f"{'='*70}")
-    print(f"  Added: {added}")
-    print(f"  Updated: {updated}")
+    print(f"  Added/Updated: {len(new_entries_text)}")
     print(f"  Failed: {failed}")
-    print(f"  Total entries: {len(existing_db.entries)}")
+    print(f"  Total entries: {len(existing_entries) - len(updated_indices) + len(new_entries_text)}")
     print(f"{'='*70}\n")
 
 if __name__ == "__main__":
