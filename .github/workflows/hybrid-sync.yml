@@ -35,7 +35,7 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: |
           git config user.name "PLAI Bot"
-          git config user.email "bot@plai.cs.ubc.ca"
+          git config user.email "plai.execassist@gmail.com"
           git add group_publications.bib publications_to_add.txt
           git commit -m "Add/update publications"
           git push
