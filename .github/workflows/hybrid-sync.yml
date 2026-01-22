@@ -1,9 +1,9 @@
-name: Sync Publications from DOIs
+name: Add Publications
 
 on:
   push:
     paths:
-      - 'dois_to_add.txt'
+      - 'publications_to_add.txt'
   
   workflow_dispatch:
 
@@ -23,21 +23,21 @@ jobs:
       - name: Install dependencies
         run: pip install requests bibtexparser
       
-      - name: Process DOIs
-        run: python scripts/doi_sync.py
+      - name: Process publications
+        run: python scripts/hybrid_sync.py
       
       - name: Check for changes
         id: check
         run: |
-          git diff --exit-code group_publications.bib dois_to_add.txt || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --exit-code group_publications.bib publications_to_add.txt || echo "changed=true" >> $GITHUB_OUTPUT
       
       - name: Commit updates
         if: steps.check.outputs.changed == 'true'
         run: |
           git config user.name "PLAI Bot"
           git config user.email "bot@plai.cs.ubc.ca"
-          git add group_publications.bib dois_to_add.txt
-          git commit -m "Update publications from DOIs"
+          git add group_publications.bib publications_to_add.txt
+          git commit -m "Add/update publications"
           git push
       
       - name: Summary
