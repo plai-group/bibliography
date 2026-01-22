@@ -1,8 +1,29 @@
+@article{naderiparizi-constrained-generative-modeling-2025,
+	abstract = {<jats:p>In this paper we describe a novel framework for diffusion-based generative modeling on constrained spaces. In particular, we introduce manual bridges, a framework that expands the kinds of constraints that can be practically used to form so-called diffusion bridges. We develop a mechanism for combining multiple such constraints so that the resulting multiply-constrained model remains a manual bridge that respects all constraints. We also develop a mechanism for training a diffusion model that respects such multiple constraints while also adapting it to match a data distribution. We develop and extend theory demonstrating the mathematical validity of our mechanisms. Additionally, we demonstrate our mechanism in constrained generative modeling tasks, highlighting a particular high-value application in modeling trajectory initializations for path planning and control in autonomous vehicles.</jats:p>},
+	author = {Saeid Naderiparizi and Xiaoxuan Liang and Berend Zwartsenberg and Frank Wood},
+	doi = {10.1609/aaai.v39i18.34159},
+	journal = {Proceedings of the AAAI Conference on Artificial Intelligence},
+	title = {Constrained Generative Modeling with Manually Bridged Diffusion Models},
+	url = {https://doi.org/10.1609/aaai.v39i18.34159},
+	url_pdf = {https://ojs.aaai.org/index.php/AAAI/article/download/34159/36314},
+	year = {2025}
+}
+
 @unpublished{he-dataset-embodied-ai-2025,
 	abstract = {Advances in deep generative modelling have made it increasingly plausible to train human-level embodied agents. Yet progress has been limited by the absence of large-scale, real-time, multi-modal, and socially interactive datasets that reflect the sensory-motor complexity of natural environments. To address this, we present PLAICraft, a novel data collection platform and dataset capturing multiplayer Minecraft interactions across five time-aligned modalities: video, game output audio, microphone input audio, mouse, and keyboard actions. Each modality is logged with millisecond time precision, enabling the study of synchronous, embodied behaviour in a rich, open-ended world. The dataset comprises over 10,000 hours of gameplay from more than 10,000 global participants.\footnote{We have done a privacy review for the public release of an initial 200-hour subset of the dataset, with plans to release most of the dataset over time.} Alongside the dataset, we provide an evaluation suite for benchmarking model capabilities in object recognition, spatial awareness, language grounding, and long-term memory. PLAICraft opens a path toward training and evaluating agents that act fluently and purposefully in real time, paving the way for truly embodied artificial intelligence.},
 	arxiv = {2505.12707},
 	author = {Yingchen He and Christian D. Weilbach and Martyna E. Wojciechowska and Yuxuan Zhang and Frank Wood},
 	title = {PLAICraft: Large-Scale Time-Aligned Vision-Speech-Action Dataset for Embodied AI},
 	url = {https://arxiv.org/abs/2505.12707},
+	year = {2025}
+}
+
+@unpublished{liu-rolling-ahead-diffusion-2025,
+	abstract = {Realistic driving simulation requires that NPCs not only mimic natural driving behaviors but also react to the behavior of other simulated agents. Recent developments in diffusion-based scenario generation focus on creating diverse and realistic traffic scenarios by jointly modelling the motion of all the agents in the scene. However, these traffic scenarios do not react when the motion of agents deviates from their modelled trajectories. For example, the ego-agent can be controlled by a stand along motion planner. To produce reactive scenarios with joint scenario models, the model must regenerate the scenario at each timestep based on new observations in a Model Predictive Control (MPC) fashion. Although reactive, this method is time-consuming, as one complete possible future for all NPCs is generated per simulation step. Alternatively, one can utilize an autoregressive model (AR) to predict only the immediate next-step future for all NPCs. Although faster, this method lacks the capability for advanced planning. We present a rolling diffusion based traffic scene generation model which mixes the benefits of both methods by predicting the next step future and simultaneously predicting partially noised further future steps at the same time. We show that such model is efficient compared to diffusion model based AR, achieving a beneficial compromise between reactivity and computational efficiency.},
+	arxiv = {2502.09587},
+	author = {Yunpeng Liu and Matthew Niedoba and William Harvey and Adam Scibior and Berend Zwartsenberg and Frank Wood},
+	title = {Rolling Ahead Diffusion for Traffic Scene Simulation},
+	url = {https://arxiv.org/abs/2502.09587},
+	url_pdf = {https://arxiv.org/pdf/2502.09587.pdf},
 	year = {2025}
 }
