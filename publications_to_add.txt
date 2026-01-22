@@ -1,2 +1,2 @@
 # Add DOIs, arXiv IDs, or URLs here, one per line
-https://arxiv.org/abs/2505.12707
+# Lines starting with # are ignored
