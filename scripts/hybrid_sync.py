@@ -98,6 +98,13 @@ def fetch_from_crossref(doi):
         url_link = work.get('URL', f"https://doi.org/{doi}")
         abstract = work.get('abstract', '')
         
+        pdf_url = ''
+        links = work.get('link', [])
+        for link in links:
+            if link.get('content-type') == 'application/pdf':
+                pdf_url = link.get('URL', '')
+                break
+        
         return {
             'identifier': doi,
             'identifier_type': 'doi',
@@ -108,6 +115,7 @@ def fetch_from_crossref(doi):
             'venue_field': venue_field,
             'entry_type': entry_type,
             'url': url_link,
+            'pdf_url': pdf_url,
             'abstract': abstract
         }
     
@@ -155,6 +163,7 @@ def fetch_from_arxiv(arxiv_id):
         abstract = abstract_elem.text.strip().replace('\n', ' ') if abstract_elem is not None else ''
         
         url_link = f"https://arxiv.org/abs/{arxiv_id}"
+        pdf_link = f"https://arxiv.org/pdf/{arxiv_id}.pdf"
         
         return {
             'identifier': arxiv_id,
@@ -166,6 +175,7 @@ def fetch_from_arxiv(arxiv_id):
             'venue_field': 'note',
             'entry_type': 'unpublished',
             'url': url_link,
+            'pdf_url': pdf_link,
             'abstract': abstract
         }
     
@@ -209,6 +219,9 @@ def create_bibtex_entry(metadata):
     
     if metadata['url']:
         entry['url'] = metadata['url']
+    
+    if metadata.get('pdf_url'):
+        entry['url_pdf'] = metadata['pdf_url']
     
     if metadata['abstract']:
         entry['abstract'] = metadata['abstract']
