@@ -7,42 +7,62 @@ from bibtexparser.bibdatabase import BibDatabase
 import sys
 import os
 import time
+import re
 
-DOI_LIST_FILE = "dois_to_add.txt"
+INPUT_FILE = "publications_to_add.txt"
 EXISTING_BIB = "group_publications.bib"
 OUTPUT_FILE = "group_publications.bib"
 
-# ===== LOAD DOI LIST =====
-def load_dois():
-    if not os.path.exists(DOI_LIST_FILE):
-        print(f"ERROR: {DOI_LIST_FILE} not found")
+# ===== IDENTIFY INPUT TYPE =====
+def identify_input(input_str):
+    input_str = input_str.strip()
+    
+    if input_str.startswith('http://') or input_str.startswith('https://'):
+        if 'arxiv.org' in input_str:
+            match = re.search(r'arxiv\.org/(?:abs|pdf)/(\d+\.\d+)', input_str)
+            if match:
+                return 'arxiv', match.group(1)
+        elif 'doi.org' in input_str:
+            match = re.search(r'doi\.org/(.+)$', input_str)
+            if match:
+                return 'doi', match.group(1)
+        return 'unknown', input_str
+    
+    if input_str.startswith('arXiv:'):
+        return 'arxiv', input_str.replace('arXiv:', '').strip()
+    
+    if re.match(r'^\d{4}\.\d{4,5}(v\d+)?$', input_str):
+        return 'arxiv', input_str
+    
+    if input_str.startswith('10.'):
+        return 'doi', input_str
+    
+    return 'unknown', input_str
+
+# ===== LOAD INPUT LIST =====
+def load_inputs():
+    if not os.path.exists(INPUT_FILE):
+        print(f"ERROR: {INPUT_FILE} not found")
         sys.exit(1)
     
-    with open(DOI_LIST_FILE, 'r') as f:
-        dois = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+    with open(INPUT_FILE, 'r') as f:
+        inputs = [line.strip() for line in f if line.strip() and not line.startswith('#')]
     
-    if not dois:
-        print("No DOIs to process")
+    if not inputs:
+        print("No inputs to process")
         sys.exit(0)
     
-    return dois
+    return inputs
 
-# ===== FETCH METADATA FROM CROSSREF =====
-def fetch_metadata(doi):
-    doi = doi.strip().replace('https://doi.org/', '').replace('http://doi.org/', '')
-    
+# ===== FETCH FROM CROSSREF =====
+def fetch_from_crossref(doi):
     url = f"https://api.crossref.org/works/{doi}"
     headers = {'User-Agent': 'PLAI-Bibliography/1.0 (mailto:plai@cs.ubc.ca)'}
     
     try:
         response = requests.get(url, headers=headers, timeout=10)
         
-        if response.status_code == 404:
-            print(f"  WARNING: DOI not found: {doi}")
-            return None
-        
         if response.status_code != 200:
-            print(f"  WARNING: Error {response.status_code} for DOI: {doi}")
             return None
         
         work = response.json().get('message', {})
@@ -79,7 +99,8 @@ def fetch_metadata(doi):
         abstract = work.get('abstract', '')
         
         return {
-            'doi': doi,
+            'identifier': doi,
+            'identifier_type': 'doi',
             'title': title,
             'author': author_str,
             'year': year,
@@ -91,14 +112,72 @@ def fetch_metadata(doi):
         }
     
     except Exception as e:
-        print(f"  ERROR fetching {doi}: {e}")
+        print(f"    Error: {e}")
+        return None
+
+# ===== FETCH FROM ARXIV =====
+def fetch_from_arxiv(arxiv_id):
+    arxiv_id = arxiv_id.replace('v', '')
+    
+    url = f"http://export.arxiv.org/api/query?id_list={arxiv_id}"
+    
+    try:
+        response = requests.get(url, timeout=10)
+        
+        if response.status_code != 200:
+            return None
+        
+        import xml.etree.ElementTree as ET
+        root = ET.fromstring(response.content)
+        
+        ns = {'atom': 'http://www.w3.org/2005/Atom'}
+        entry = root.find('atom:entry', ns)
+        
+        if entry is None:
+            return None
+        
+        title = entry.find('atom:title', ns)
+        title = title.text.strip().replace('\n', ' ') if title is not None else ''
+        
+        authors = []
+        for author in entry.findall('atom:author', ns):
+            name = author.find('atom:name', ns)
+            if name is not None:
+                authors.append(name.text.strip())
+        author_str = ' and '.join(authors)
+        
+        published = entry.find('atom:published', ns)
+        year = ''
+        if published is not None:
+            year = published.text[:4]
+        
+        abstract_elem = entry.find('atom:summary', ns)
+        abstract = abstract_elem.text.strip().replace('\n', ' ') if abstract_elem is not None else ''
+        
+        url_link = f"https://arxiv.org/abs/{arxiv_id}"
+        
+        return {
+            'identifier': arxiv_id,
+            'identifier_type': 'arxiv',
+            'title': title,
+            'author': author_str,
+            'year': year,
+            'venue': '',
+            'venue_field': 'note',
+            'entry_type': 'unpublished',
+            'url': url_link,
+            'abstract': abstract
+        }
+    
+    except Exception as e:
+        print(f"    Error: {e}")
         return None
 
 # ===== CREATE BIBTEX ENTRY =====
 def create_bibtex_entry(metadata):
     authors = metadata['author'].split(' and ')
-    if authors:
-        surname = authors[0].strip().split()[-1].lower() if authors[0] else 'unknown'
+    if authors and authors[0]:
+        surname = authors[0].strip().split()[-1].lower()
     else:
         surname = 'unknown'
     
@@ -118,8 +197,12 @@ def create_bibtex_entry(metadata):
         'title': metadata['title'],
         'author': metadata['author'],
         'year': metadata['year'],
-        'doi': metadata['doi'],
     }
+    
+    if metadata['identifier_type'] == 'doi':
+        entry['doi'] = metadata['identifier']
+    elif metadata['identifier_type'] == 'arxiv':
+        entry['arxiv'] = metadata['identifier']
     
     if metadata['venue']:
         entry[metadata['venue_field']] = metadata['venue']
@@ -143,19 +226,31 @@ def load_existing_bib():
 
 # ===== MERGE ENTRIES =====
 def merge_entries(existing_db, new_entries):
-    existing_dois = {}
+    existing_identifiers = {}
     for i, entry in enumerate(existing_db.entries):
         if 'doi' in entry:
-            existing_dois[entry['doi'].lower()] = i
+            existing_identifiers[('doi', entry['doi'].lower())] = i
+        if 'arxiv' in entry:
+            existing_identifiers[('arxiv', entry['arxiv'].lower())] = i
     
     added = 0
     updated = 0
     
     for new_entry in new_entries:
-        doi = new_entry['doi'].lower()
+        identifier_type = None
+        identifier = None
         
-        if doi in existing_dois:
-            idx = existing_dois[doi]
+        if 'doi' in new_entry:
+            identifier_type = 'doi'
+            identifier = new_entry['doi'].lower()
+        elif 'arxiv' in new_entry:
+            identifier_type = 'arxiv'
+            identifier = new_entry['arxiv'].lower()
+        
+        key = (identifier_type, identifier) if identifier_type else None
+        
+        if key and key in existing_identifiers:
+            idx = existing_identifiers[key]
             existing_db.entries[idx] = new_entry
             updated += 1
             print(f"  UPDATED: {new_entry['title'][:60]}")
@@ -182,20 +277,20 @@ def write_output(db):
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write(writer.write(db))
 
-# ===== CLEAR DOI LIST =====
-def clear_doi_list():
-    with open(DOI_LIST_FILE, 'w') as f:
-        f.write("# Add DOIs here, one per line\n")
+# ===== CLEAR INPUT LIST =====
+def clear_input_list():
+    with open(INPUT_FILE, 'w') as f:
+        f.write("# Add DOIs, arXiv IDs, or URLs here, one per line\n")
         f.write("# Lines starting with # are ignored\n")
 
 # ===== MAIN =====
 def main():
     print("\n" + "="*70)
-    print("DOI-Based Publication Sync")
+    print("Publication Sync (DOI / arXiv / URL)")
     print("="*70 + "\n")
     
-    dois = load_dois()
-    print(f"Found {len(dois)} DOI(s) to process\n")
+    inputs = load_inputs()
+    print(f"Found {len(inputs)} input(s) to process\n")
     
     existing_db = load_existing_bib()
     print(f"Loaded {len(existing_db.entries)} existing entries\n")
@@ -203,15 +298,29 @@ def main():
     new_entries = []
     failed = 0
     
-    for doi in dois:
-        print(f"Fetching: {doi}")
-        metadata = fetch_metadata(doi)
+    for input_str in inputs:
+        input_type, identifier = identify_input(input_str)
+        
+        print(f"Processing: {input_str}")
+        print(f"  Detected as: {input_type}")
+        
+        metadata = None
+        
+        if input_type == 'doi':
+            metadata = fetch_from_crossref(identifier)
+        elif input_type == 'arxiv':
+            metadata = fetch_from_arxiv(identifier)
+        else:
+            print(f"  WARNING: Unrecognized format")
+            failed += 1
+            continue
         
         if metadata:
             entry = create_bibtex_entry(metadata)
             new_entries.append(entry)
             time.sleep(1)
         else:
+            print(f"  WARNING: Could not fetch metadata")
             failed += 1
     
     if not new_entries:
@@ -223,7 +332,7 @@ def main():
     
     write_output(existing_db)
     
-    clear_doi_list()
+    clear_input_list()
     
     print(f"\n{'='*70}")
     print(f"SUMMARY")
