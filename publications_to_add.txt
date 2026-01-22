@@ -1,2 +1,4 @@
 # Add DOIs, arXiv IDs, or URLs here, one per line
 # Lines starting with # are ignored
+https://arxiv.org/abs/2502.09587
+https://ojs.aaai.org/index.php/AAAI/article/view/34159
