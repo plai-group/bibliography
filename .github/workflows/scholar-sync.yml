@@ -1,58 +1,48 @@
-name: Process Scholar Export
+name: Sync Publications from DOIs
 
 on:
   push:
     paths:
-      - 'scholar_export.bib'
+      - 'dois_to_add.txt'
   
   workflow_dispatch:
 
 jobs:
-  process-export:
+  sync:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       
       - name: Install dependencies
-        run: |
-          pip install bibtexparser
+        run: pip install requests bibtexparser
       
-      - name: Process Scholar export
-        run: |
-          python scripts/sync_scholar.py
+      - name: Process DOIs
+        run: python scripts/doi_sync.py
       
       - name: Check for changes
-        id: git-check
+        id: check
         run: |
-          git diff --exit-code group_publications.bib || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --exit-code group_publications.bib dois_to_add.txt || echo "changed=true" >> $GITHUB_OUTPUT
       
-      - name: Commit updated publications
-        if: steps.git-check.outputs.changed == 'true'
+      - name: Commit updates
+        if: steps.check.outputs.changed == 'true'
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
-          git add group_publications.bib
-          git commit -m "Update publications from Scholar export"
+          git config user.name "PLAI Bot"
+          git config user.email "bot@plai.cs.ubc.ca"
+          git add group_publications.bib dois_to_add.txt
+          git commit -m "Update publications from DOIs"
           git push
-      
-      - name: No changes detected
-        if: steps.git-check.outputs.changed != 'true'
-        run: echo "✓ No changes to publications"
       
       - name: Summary
         if: always()
         run: |
-          echo "### Processing Results" >> $GITHUB_STEP_SUMMARY
           if [ -f "group_publications.bib" ]; then
-            echo "✓ Publications file updated" >> $GITHUB_STEP_SUMMARY
-            echo "Total entries: $(grep -c "^@" group_publications.bib)" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ Publications file not found" >> $GITHUB_STEP_SUMMARY
+            echo "Total publications: $(grep -c '^@' group_publications.bib)" >> $GITHUB_STEP_SUMMARY
           fi
