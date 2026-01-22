@@ -6,7 +6,7 @@ import sys
 import os
 import time
 
-INPUT_FILE = "publications_to_add.txt"
+INPUT_FILE = "add_publications.txt"
 EXISTING_BIB = "group_publications.bib"
 OUTPUT_FILE = "group_publications.bib"
 
@@ -14,8 +14,6 @@ OUTPUT_FILE = "group_publications.bib"
 def parse_bib_entries(content):
     """Parse BibTeX entries by counting braces"""
     entries = []
-    
-    # Find entry starts
     entry_pattern = r'@(\w+)\{([^,]+),'
     
     pos = 0
@@ -28,7 +26,6 @@ def parse_bib_entries(content):
         entry_type = match.group(1)
         citation_key = match.group(2).strip()
         
-        # Count braces to find the end
         brace_count = 1
         i = pos + match.end()
         
@@ -43,7 +40,6 @@ def parse_bib_entries(content):
             end = i
             full_text = content[start:end]
             
-            # Extract fields
             entry = {
                 'ENTRYTYPE': entry_type,
                 'ID': citation_key,
@@ -52,12 +48,10 @@ def parse_bib_entries(content):
                 '_end': end
             }
             
-            # Extract doi
             doi_match = re.search(r'doi\s*=\s*\{([^}]+)\}', full_text, re.IGNORECASE)
             if doi_match:
                 entry['doi'] = doi_match.group(1).strip()
             
-            # Extract arxiv/eprint
             arxiv_match = re.search(r'arxiv\s*=\s*\{([^}]+)\}', full_text, re.IGNORECASE)
             if not arxiv_match:
                 arxiv_match = re.search(r'eprint\s*=\s*\{([^}]+)\}', full_text, re.IGNORECASE)
@@ -378,8 +372,8 @@ def main():
         f.write('\n\n'.join(output_parts))
     
     with open(INPUT_FILE, 'w') as f:
-        f.write("# Add DOIs, arXiv IDs, or URLs here, one per line\n")
-        f.write("# Lines starting with # are ignored\n")
+        f.write("# Add new publications here\n")
+        f.write("# Insert their DOI, arXiv ID, or URL below (one publication per line)\n")
     
     added = len(new_entries) - len(updated_indices)
     updated = len(updated_indices)
