@@ -1,132 +1,238 @@
 #!/usr/bin/env python3
-"""
-Process manually exported BibTeX from Google Scholar
-Validates, formats, and prepares for website display
-"""
 
+import requests
 import bibtexparser
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 import sys
 import os
+import time
 
-INPUT_FILE = "scholar_export.bib"
+DOI_LIST_FILE = "dois_to_add.txt"
+EXISTING_BIB = "group_publications.bib"
 OUTPUT_FILE = "group_publications.bib"
 
-def clean_entry(entry):
-    """Clean and standardize a BibTeX entry"""
-    
-    # Ensure required fields exist
-    if 'title' not in entry or not entry['title']:
-        print(f"Warning: Skipping entry without title: {entry.get('ID', 'unknown')}")
-        return None
-    
-    # Standardize author format (Scholar exports with 'and', we keep it)
-    if 'author' in entry:
-        entry['author'] = entry['author'].strip()
-    
-    # Ensure year exists
-    if 'year' not in entry or not entry['year']:
-        entry['year'] = 'unknown'
-    
-    return entry
-
-def categorize_entries(entries):
-    """Organize entries by type for summary"""
-    categories = {}
-    for entry in entries:
-        entry_type = entry.get('ENTRYTYPE', 'misc')
-        if entry_type not in categories:
-            categories[entry_type] = 0
-        categories[entry_type] += 1
-    return categories
-
-def main():
-    print("="*60)
-    print("Google Scholar BibTeX Processor")
-    print("="*60)
-    
-    # Check if input file exists
-    if not os.path.exists(INPUT_FILE):
-        print(f"\n❌ ERROR: {INPUT_FILE} not found!")
-        print("\nTo create this file:")
-        print("1. Go to Frank Wood's Scholar profile:")
-        print("   https://scholar.google.ca/citations?user=d4yNzXIAAAAJ&hl=en")
-        print("2. Check the 'Select all' box at the top")
-        print("3. Click 'Export' button")
-        print("4. Select 'BibTeX'")
-        print("5. Save the downloaded file as 'scholar_export.bib'")
-        print("6. Place it in the repository root")
-        print("7. Commit and push to GitHub")
-        print("8. Run this workflow again")
+# ===== LOAD DOI LIST =====
+def load_dois():
+    if not os.path.exists(DOI_LIST_FILE):
+        print(f"ERROR: {DOI_LIST_FILE} not found")
         sys.exit(1)
     
-    print(f"\n✓ Found {INPUT_FILE}")
+    with open(DOI_LIST_FILE, 'r') as f:
+        dois = [line.strip() for line in f if line.strip() and not line.startswith('#')]
     
-    # Parse the Scholar export
+    if not dois:
+        print("No DOIs to process")
+        sys.exit(0)
+    
+    return dois
+
+# ===== FETCH METADATA FROM CROSSREF =====
+def fetch_metadata(doi):
+    doi = doi.strip().replace('https://doi.org/', '').replace('http://doi.org/', '')
+    
+    url = f"https://api.crossref.org/works/{doi}"
+    headers = {'User-Agent': 'PLAI-Bibliography/1.0 (mailto:plai@cs.ubc.ca)'}
+    
     try:
-        with open(INPUT_FILE, 'r', encoding='utf-8') as f:
-            parser = bibtexparser.bparser.BibTexParser()
-            parser.common_strings = True
-            bib_db = parser.parse_file(f)
+        response = requests.get(url, headers=headers, timeout=10)
         
-        print(f"✓ Loaded {len(bib_db.entries)} entries from Scholar export")
+        if response.status_code == 404:
+            print(f"  WARNING: DOI not found: {doi}")
+            return None
         
-    except Exception as e:
-        print(f"\n❌ ERROR parsing {INPUT_FILE}: {e}")
-        sys.exit(1)
-    
-    # Clean and validate entries
-    print("\nCleaning and validating entries...")
-    cleaned_entries = []
-    skipped = 0
-    
-    for entry in bib_db.entries:
-        cleaned = clean_entry(entry)
-        if cleaned:
-            cleaned_entries.append(cleaned)
+        if response.status_code != 200:
+            print(f"  WARNING: Error {response.status_code} for DOI: {doi}")
+            return None
+        
+        work = response.json().get('message', {})
+        
+        title = work.get('title', [''])[0] if work.get('title') else ''
+        
+        authors = []
+        for author in work.get('author', []):
+            given = author.get('given', '')
+            family = author.get('family', '')
+            if family:
+                authors.append(f"{given} {family}".strip())
+        author_str = ' and '.join(authors)
+        
+        published = work.get('published-print') or work.get('published-online') or work.get('created')
+        year = ''
+        if published and 'date-parts' in published:
+            year = str(published['date-parts'][0][0])
+        
+        container = work.get('container-title', [''])[0] if work.get('container-title') else ''
+        
+        pub_type = work.get('type', '')
+        if pub_type == 'journal-article':
+            entry_type = 'article'
+            venue_field = 'journal'
+        elif 'proceedings' in pub_type or 'conference' in container.lower():
+            entry_type = 'inproceedings'
+            venue_field = 'booktitle'
         else:
-            skipped += 1
+            entry_type = 'misc'
+            venue_field = 'note'
+        
+        url_link = work.get('URL', f"https://doi.org/{doi}")
+        abstract = work.get('abstract', '')
+        
+        return {
+            'doi': doi,
+            'title': title,
+            'author': author_str,
+            'year': year,
+            'venue': container,
+            'venue_field': venue_field,
+            'entry_type': entry_type,
+            'url': url_link,
+            'abstract': abstract
+        }
     
-    if skipped > 0:
-        print(f"⚠ Skipped {skipped} incomplete entries")
+    except Exception as e:
+        print(f"  ERROR fetching {doi}: {e}")
+        return None
+
+# ===== CREATE BIBTEX ENTRY =====
+def create_bibtex_entry(metadata):
+    authors = metadata['author'].split(' and ')
+    if authors:
+        surname = authors[0].strip().split()[-1].lower() if authors[0] else 'unknown'
+    else:
+        surname = 'unknown'
     
-    print(f"✓ {len(cleaned_entries)} valid entries")
+    title = metadata['title']
+    stop_words = {'a', 'an', 'the', 'in', 'on', 'at', 'to', 'for', 'of', 'and', 'or'}
+    title_words = [w.lower() for w in title.split() if w.lower() not in stop_words and w.isalnum()]
+    title_key = '-'.join(title_words[:3]) if title_words else 'paper'
     
-    # Sort by year (descending) then title
-    cleaned_entries.sort(key=lambda x: (-int(x.get('year', 0)) if x.get('year', '').isdigit() else 0, x.get('title', '')))
+    if len(title_key) > 40:
+        title_key = title_key[:40]
     
-    # Create new database with cleaned entries
-    output_db = BibDatabase()
-    output_db.entries = cleaned_entries
+    citation_key = f"{surname}-{title_key}-{metadata['year']}"
     
-    # Write to output file
+    entry = {
+        'ENTRYTYPE': metadata['entry_type'],
+        'ID': citation_key,
+        'title': metadata['title'],
+        'author': metadata['author'],
+        'year': metadata['year'],
+        'doi': metadata['doi'],
+    }
+    
+    if metadata['venue']:
+        entry[metadata['venue_field']] = metadata['venue']
+    
+    if metadata['url']:
+        entry['url'] = metadata['url']
+    
+    if metadata['abstract']:
+        entry['abstract'] = metadata['abstract']
+    
+    return {k: v for k, v in entry.items() if v}
+
+# ===== LOAD EXISTING BIBLIOGRAPHY =====
+def load_existing_bib():
+    if not os.path.exists(EXISTING_BIB):
+        return BibDatabase()
+    
+    with open(EXISTING_BIB, 'r', encoding='utf-8') as f:
+        parser = bibtexparser.bparser.BibTexParser()
+        return parser.parse_file(f)
+
+# ===== MERGE ENTRIES =====
+def merge_entries(existing_db, new_entries):
+    existing_dois = {}
+    for i, entry in enumerate(existing_db.entries):
+        if 'doi' in entry:
+            existing_dois[entry['doi'].lower()] = i
+    
+    added = 0
+    updated = 0
+    
+    for new_entry in new_entries:
+        doi = new_entry['doi'].lower()
+        
+        if doi in existing_dois:
+            idx = existing_dois[doi]
+            existing_db.entries[idx] = new_entry
+            updated += 1
+            print(f"  UPDATED: {new_entry['title'][:60]}")
+        else:
+            existing_db.entries.append(new_entry)
+            added += 1
+            print(f"  ADDED: {new_entry['title'][:60]}")
+    
+    return added, updated
+
+# ===== WRITE OUTPUT =====
+def write_output(db):
+    db.entries.sort(
+        key=lambda x: (
+            -int(x.get('year', 0)) if str(x.get('year', '')).isdigit() else 0,
+            x.get('title', '')
+        )
+    )
+    
     writer = BibTexWriter()
     writer.indent = '\t'
     writer.order_entries_by = None
     
-    try:
-        with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-            f.write(writer.write(output_db))
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        f.write(writer.write(db))
+
+# ===== CLEAR DOI LIST =====
+def clear_doi_list():
+    with open(DOI_LIST_FILE, 'w') as f:
+        f.write("# Add DOIs here, one per line\n")
+        f.write("# Lines starting with # are ignored\n")
+
+# ===== MAIN =====
+def main():
+    print("\n" + "="*70)
+    print("DOI-Based Publication Sync")
+    print("="*70 + "\n")
+    
+    dois = load_dois()
+    print(f"Found {len(dois)} DOI(s) to process\n")
+    
+    existing_db = load_existing_bib()
+    print(f"Loaded {len(existing_db.entries)} existing entries\n")
+    
+    new_entries = []
+    failed = 0
+    
+    for doi in dois:
+        print(f"Fetching: {doi}")
+        metadata = fetch_metadata(doi)
         
-        print(f"\n✓ Successfully wrote {OUTPUT_FILE}")
-        
-    except Exception as e:
-        print(f"\n❌ ERROR writing {OUTPUT_FILE}: {e}")
-        sys.exit(1)
+        if metadata:
+            entry = create_bibtex_entry(metadata)
+            new_entries.append(entry)
+            time.sleep(1)
+        else:
+            failed += 1
     
-    # Print summary
-    print("\n" + "="*60)
-    print("SUMMARY")
-    print("="*60)
+    if not new_entries:
+        print("\nNo valid entries fetched")
+        sys.exit(0)
     
-    categories = categorize_entries(cleaned_entries)
-    for entry_type, count in sorted(categories.items()):
-        print(f"  {entry_type}: {count}")
+    print(f"\n{'='*70}")
+    added, updated = merge_entries(existing_db, new_entries)
     
-    print(f"\nTotal publications: {len(cleaned_entries)}")
-    print("\n✓ Processing complete!")
-    print("="*60)
+    write_output(existing_db)
+    
+    clear_doi_list()
+    
+    print(f"\n{'='*70}")
+    print(f"SUMMARY")
+    print(f"{'='*70}")
+    print(f"  Added: {added}")
+    print(f"  Updated: {updated}")
+    print(f"  Failed: {failed}")
+    print(f"  Total entries: {len(existing_db.entries)}")
+    print(f"{'='*70}\n")
 
 if __name__ == "__main__":
     main()
