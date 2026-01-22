@@ -361,15 +361,41 @@ def main():
     
     output_parts = []
     
+    # Keep entries from 2018 or later, exclude updated ones
     for i, entry in enumerate(existing_entries):
         if i not in updated_indices:
-            output_parts.append(entry['_full_text'])
+            # Extract year from entry
+            year_match = re.search(r'year\s*=\s*\{?(\d{4})\}?', entry['_full_text'], re.IGNORECASE)
+            year = int(year_match.group(1)) if year_match else 0
+            
+            # Only include 2018 and later
+            if year >= 2018:
+                # Extract title for secondary sort
+                title_match = re.search(r'title\s*=\s*\{([^}]+)\}', entry['_full_text'], re.IGNORECASE)
+                title = title_match.group(1).lower() if title_match else ''
+                
+                output_parts.append((year, title, entry['_full_text']))
     
+    # Add new entries with their years
     for _, entry_text in new_entries:
-        output_parts.append(entry_text)
+        year_match = re.search(r'year\s*=\s*\{(\d{4})\}', entry_text)
+        year = int(year_match.group(1)) if year_match else 9999
+        
+        # Only include 2018 and later
+        if year >= 2018:
+            title_match = re.search(r'title\s*=\s*\{([^}]+)\}', entry_text, re.IGNORECASE)
+            title = title_match.group(1).lower() if title_match else ''
+            
+            output_parts.append((year, title, entry_text))
+    
+    # Sort by year descending (newest first), then by title
+    output_parts.sort(key=lambda x: (-x[0], x[1]))
+    
+    # Extract just the text
+    sorted_texts = [text for _, _, text in output_parts]
     
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        f.write('\n\n'.join(output_parts))
+        f.write('\n\n'.join(sorted_texts))
     
     with open(INPUT_FILE, 'w') as f:
         f.write("# Add new publications here\n")
