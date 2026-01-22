@@ -10,42 +10,66 @@ INPUT_FILE = "publications_to_add.txt"
 EXISTING_BIB = "group_publications.bib"
 OUTPUT_FILE = "group_publications.bib"
 
-# ===== PARSE BIB FILE MANUALLY =====
+# ===== PARSE BIB FILE WITH BRACE COUNTING =====
 def parse_bib_entries(content):
-    """Parse BibTeX entries without using bibtexparser"""
+    """Parse BibTeX entries by counting braces"""
     entries = []
     
-    # Find all entries with pattern @type{key,
-    pattern = r'(@\w+)\{([^,]+),([^}]+(?:\{[^}]*\}[^}]*)*)\}'
+    # Find entry starts
+    entry_pattern = r'@(\w+)\{([^,]+),'
     
-    for match in re.finditer(pattern, content, re.DOTALL):
+    pos = 0
+    while True:
+        match = re.search(entry_pattern, content[pos:])
+        if not match:
+            break
+        
+        start = pos + match.start()
         entry_type = match.group(1)
         citation_key = match.group(2).strip()
-        entry_content = match.group(3)
         
-        # Extract fields
-        fields = {}
-        fields['ENTRYTYPE'] = entry_type.replace('@', '')
-        fields['ID'] = citation_key
+        # Count braces to find the end
+        brace_count = 1
+        i = pos + match.end()
         
-        # Extract doi
-        doi_match = re.search(r'doi\s*=\s*\{([^}]+)\}', entry_content, re.IGNORECASE)
-        if doi_match:
-            fields['doi'] = doi_match.group(1).strip()
+        while i < len(content) and brace_count > 0:
+            if content[i] == '{':
+                brace_count += 1
+            elif content[i] == '}':
+                brace_count -= 1
+            i += 1
         
-        # Extract arxiv
-        arxiv_match = re.search(r'arxiv\s*=\s*\{([^}]+)\}', entry_content, re.IGNORECASE)
-        if not arxiv_match:
-            arxiv_match = re.search(r'eprint\s*=\s*\{([^}]+)\}', entry_content, re.IGNORECASE)
-        if arxiv_match:
-            fields['arxiv'] = arxiv_match.group(1).strip()
-        
-        # Store the full entry text for later
-        fields['_full_text'] = match.group(0)
-        
-        entries.append(fields)
+        if brace_count == 0:
+            end = i
+            full_text = content[start:end]
+            
+            # Extract fields
+            entry = {
+                'ENTRYTYPE': entry_type,
+                'ID': citation_key,
+                '_full_text': full_text,
+                '_start': start,
+                '_end': end
+            }
+            
+            # Extract doi
+            doi_match = re.search(r'doi\s*=\s*\{([^}]+)\}', full_text, re.IGNORECASE)
+            if doi_match:
+                entry['doi'] = doi_match.group(1).strip()
+            
+            # Extract arxiv/eprint
+            arxiv_match = re.search(r'arxiv\s*=\s*\{([^}]+)\}', full_text, re.IGNORECASE)
+            if not arxiv_match:
+                arxiv_match = re.search(r'eprint\s*=\s*\{([^}]+)\}', full_text, re.IGNORECASE)
+            if arxiv_match:
+                entry['arxiv'] = arxiv_match.group(1).strip()
+            
+            entries.append(entry)
+            pos = end
+        else:
+            pos += match.end()
     
-    return entries, content
+    return entries
 
 # ===== IDENTIFY INPUT TYPE =====
 def identify_input(input_str):
@@ -259,7 +283,6 @@ def create_bibtex_text(metadata):
         entry_lines.append(f"\turl_pdf = {{{metadata['pdf_url']}}},")
     
     if metadata['abstract']:
-        # Escape special chars
         abstract_clean = metadata['abstract'].replace('{', '\\{').replace('}', '\\}')
         entry_lines.append(f"\tabstract = {{{abstract_clean}}},")
     
@@ -276,24 +299,21 @@ def main():
     inputs = load_inputs()
     print(f"Found {len(inputs)} input(s) to process\n")
     
-    # Read existing file as text
     if os.path.exists(EXISTING_BIB):
         with open(EXISTING_BIB, 'r', encoding='utf-8') as f:
             existing_content = f.read()
-        existing_entries, _ = parse_bib_entries(existing_content)
+        existing_entries = parse_bib_entries(existing_content)
         print(f"Loaded {len(existing_entries)} existing entries\n")
     else:
         existing_content = ""
         existing_entries = []
     
-    # Build identifier map
     identifier_map = {}
     for i, entry in enumerate(existing_entries):
         if 'doi' in entry:
             doi = entry['doi'].lower()
             identifier_map[('doi', doi)] = i
             
-            # Check for arXiv DOI
             arxiv_match = re.search(r'10\.48550/arxiv\.(\d{4}\.\d+)', doi, re.IGNORECASE)
             if arxiv_match:
                 arxiv_id = arxiv_match.group(1)
@@ -303,8 +323,7 @@ def main():
             arxiv_id = entry['arxiv'].lower()
             identifier_map[('arxiv', arxiv_id)] = i
     
-    # Fetch new entries
-    new_entries_text = []
+    new_entries = []
     updated_indices = set()
     failed = 0
     
@@ -326,56 +345,52 @@ def main():
             continue
         
         if metadata:
-            # Check if exists
             key = (metadata['identifier_type'], metadata['identifier'].lower())
             
             if key in identifier_map:
                 idx = identifier_map[key]
-                # Mark for replacement
                 updated_indices.add(idx)
                 print(f"  UPDATED: {metadata['title'][:60]}")
             else:
                 print(f"  ADDED: {metadata['title'][:60]}")
             
-            # Generate new entry text
             new_entry_text = create_bibtex_text(metadata)
-            new_entries_text.append((key, new_entry_text))
+            new_entries.append((key, new_entry_text))
             
             time.sleep(1)
         else:
             failed += 1
     
-    if not new_entries_text:
+    if not new_entries:
         print("\nNo valid entries fetched")
         sys.exit(0)
     
-    # Build new content
-    output_lines = []
+    output_parts = []
     
-    # Add existing entries (except updated ones)
     for i, entry in enumerate(existing_entries):
         if i not in updated_indices:
-            output_lines.append(entry['_full_text'])
+            output_parts.append(entry['_full_text'])
     
-    # Add new/updated entries
-    for _, entry_text in new_entries_text:
-        output_lines.append(entry_text)
+    for _, entry_text in new_entries:
+        output_parts.append(entry_text)
     
-    # Write output
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        f.write('\n\n'.join(output_lines))
+        f.write('\n\n'.join(output_parts))
     
-    # Clear input list
     with open(INPUT_FILE, 'w') as f:
         f.write("# Add DOIs, arXiv IDs, or URLs here, one per line\n")
         f.write("# Lines starting with # are ignored\n")
     
+    added = len(new_entries) - len(updated_indices)
+    updated = len(updated_indices)
+    
     print(f"\n{'='*70}")
     print(f"SUMMARY")
     print(f"{'='*70}")
-    print(f"  Added/Updated: {len(new_entries_text)}")
+    print(f"  Added: {added}")
+    print(f"  Updated: {updated}")
     print(f"  Failed: {failed}")
-    print(f"  Total entries: {len(existing_entries) - len(updated_indices) + len(new_entries_text)}")
+    print(f"  Total entries: {len(existing_entries) - len(updated_indices) + len(new_entries)}")
     print(f"{'='*70}\n")
 
 if __name__ == "__main__":
