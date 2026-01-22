@@ -1,3 +1,15 @@
+@unpublished{he-dataset-embodied-ai-2025,
+	doi={10.48550/arXiv.2505.12707},
+	url_ArXiv={https://arxiv.org/abs/2505.12707},
+	url_pdf={https://arxiv.org/pdf/2505.12707},
+	title={PLAICraft: Large-Scale Time-Aligned Vision-Speech-Action Dataset for Embodied AI},
+	publisher={arXiv},
+    author={He, Yingchen and Weilbach, Christian and Wojciechowska, Martyna and Zhang, Yuxuan and Wood, Frank},
+    year={2025},
+	copyright={arXiv.org perpetual, non-exclusive licence},
+	abstract={Advances in deep generative modelling have made it increasingly plausible to train human-level embodied agents. Yet progress has been limited by the absence of large-scale, real-time, multi-modal, and socially interactive datasets that reflect the sensory-motor complexity of natural environments. To address this, we present PLAICraft, a novel data collection platform and dataset capturing multiplayer Minecraft interactions across five time-aligned modalities: video, game output audio, microphone input audio, mouse, and keyboard actions. Each modality is logged with millisecond time precision, enabling the study of synchronous, embodied behaviour in a rich, open-ended world. The dataset comprises over 10,000 hours of gameplay from more than 10,000 global participants.\footnote{We have done a privacy review for the public release of an initial 200-hour subset of the dataset, with plans to release most of the dataset over time.} Alongside the dataset, we provide an evaluation suite for benchmarking model capabilities in object recognition, spatial awareness, language grounding, and long-term memory. PLAICraft opens a path toward training and evaluating agents that act fluently and purposefully in real time, paving the way for truly embodied artificial intelligence.},
+}
+
 @InProceedings{naderiparizi-constrained-generative-modeling-2025,
 	title={Constrained Generative Modeling with Manually Bridged Diffusion Models},
 	author={Naderiparizi, Saeid and Liang, Xiaoxuan and Zwartsenberg, Berend and Wood, Frank},
@@ -530,7 +542,7 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   support = {MITACS},
   abstract={We develop a deep generative model built on a fully differentiable simulator for multi-agent trajectory prediction. Agents are modeled with conditional recurrent variational neural networks (CVRNNs), which take as input an ego-centric birdview image representing the current state of the world and output an action, consisting of steering and acceleration, which is used to derive the subsequent agent state using a kinematic bicycle model. The full simulation state is then differentiably rendered for each agent, initiating the next time step. We achieve state-of-the-art results on the INTERACTION dataset, using standard neural architectures and a standard variational training objective, producing realistic multi-modal predictions without any ad-hoc diversity-inducing losses. We conduct ablation studies to examine individual components of the simulator, finding that both the kinematic bicycle model and the continuous feedback from the birdview image are crucial for achieving this level of performance. We name our model ITRA, for "Imagining the Road Ahead".}
   }
-
+  
 @unpublished{scibior2021differentiable,
       title={Differentiable Particle Filtering without Modifying the Forward Pass}, 
       author={Adam Scibior and Frank Wood},
@@ -702,7 +714,7 @@ url_Paper={https://openreview.net/forum?id=7MV6uLzOChW}
   abstract={The recently proposed Thermodynamic Variational Objective (TVO) leverages thermodynamic integration to provide a family of variational inference objectives, which both tighten and generalize the ubiquitous Evidence Lower Bound (ELBO). However, the tightness of TVO bounds was not previously known, an expensive grid search was used to choose a "schedule" of intermediate distributions, and model learning suffered with ostensibly tighter bounds. In this work, we propose an exponential family interpretation of the geometric mixture curve underlying the TVO and various path sampling methods, which allows us to characterize the gap in TVO likelihood bounds as a sum of KL divergences. We propose to choose intermediate distributions using equal spacing in the moment parameters of our exponential family, which matches grid search performance and allows the schedule to adaptively update over the course of training. Finally, we derive a doubly reparameterized gradient estimator which improves model learning and allows the TVO to benefit from more refined bounds. To further contextualize our contributions, we provide a unified framework for understanding thermodynamic integration and the TVO using Taylor series remainders.}
   }
 
-@unpublished{WOO-20,
+%@unpublished{WOO-20,
 %  author = {{Wood}, Frank and {Warrington}, Andrew and {Naderiparizi}, Saeid and {Weilbach}, Christian and {Masrani}, Vaden and {Harvey}, William and {Scibior}, Adam and {Beronov}, Boyan and {Nasseri}, Ali},
 %  title = {Planning as Inference in Epidemiological Models},
 %  journal = {arXiv e-prints},
@@ -831,7 +843,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   abstract={Few-shot learning is a fundamental task in computer vision that carries the promise of alleviating the need for exhaustively labeled data. Most few-shot learning approaches to date have focused on progressively more complex neural feature extractors and classifier adaptation strategies, as well as the refinement of the task definition itself. In this paper, we explore the hypothesis that a simple class-covariance-based distance metric, namely the Mahalanobis distance, adopted into a state of the art few-shot learning approach (CNAPS) can, in and of itself, lead to a significant performance improvement. We also discover that it is possible to learn adaptive feature extractors that allow useful estimation of the high dimensional feature covariances required by this metric from surprisingly few samples. The result of our work is a new "Simple CNAPS" architecture which has up to 9.2% fewer trainable parameters than CNAPS and performs up to 6.1% better than state of the art on the standard few-shot image classification benchmark dataset.}
 }
 
-@inproceedings{WAN-19,
+%@inproceedings{WAN-19,
 %  title={Safer End-to-End Autonomous Driving via Conditional Imitation Learning and Command Augmentation},
 %  author={Wang, R and Scibior, A and Wood F},
 %  booktitle={NeurIPS self-driving car workshop},
@@ -1279,6 +1291,19 @@ We show that performing inference in this space can be viewed as rejection sampl
   journal={NIPS Workshop on Artificial Intelligence for Data Science}
 }
 
+ARTICLE{10.3389/conf.fninf.2016.20.00046,
+ AUTHOR={Warrington, Andrew  and  Wood, Frank},
+ TITLE={Algorithmic Optimisation of Neuron Generator Parameters},
+ JOURNAL={Frontiers in Neuroinformatics},
+ VOLUME={},
+ YEAR={2016},
+ NUMBER={46},
+ URL={http://www.frontiersin.org/neuroinformatics/10.3389/conf.fninf.2016.20.00046/full},
+ DOI={10.3389/conf.fninf.2016.20.00046},
+ ISSN={1662-5196} ,
+ ABSTRACT={}
+}
+
 @inproceedings{vandemeent-PPS-2016,
   Author = {van de Meent, Jan-Willem and Paige, T.~Brooks and Tolpin, David and Wood, Frank},
   Booktitle = {POPL Workshop on Probabilistic Programming Semantics},
@@ -1404,6 +1429,23 @@ We show that performing inference in this space can be viewed as rejection sampl
   year={2015}
 }
 
+incollection{Tolpin-ECML-Anglican-DemoTrack,
+  year={2015},
+  isbn={978-3-319-23460-1},
+  booktitle={Machine Learning and Knowledge Discovery in Databases},
+  volume={9286},
+  series={Lecture Notes in Computer Science},
+  editor={Bifet, Albert and May, Michael and Zadrozny, Bianca and Gavalda, Ricard and Pedreschi, Dino and Bonchi, Francesco and Cardoso, Jaime and Spiliopoulou, Myra},
+  doi={10.1007/978-3-319-23461-8_36},
+  title={Probabilistic Programming in Anglican},
+  url={http://dx.doi.org/10.1007/978-3-319-23461-8_36},
+  publisher={Springer International Publishing},
+  keywords={Probabilistic programming},
+  author={Tolpin, David and van de Meent, Jan-Willem and Wood, Frank},
+  pages={308-311},
+  language={English}
+}
+
 @inproceedings{vandeMeent-AISTATS-2015,
   archiveprefix = {arXiv},
   arxivid = {1501.06769},
@@ -1427,6 +1469,23 @@ We show that performing inference in this space can be viewed as rejection sampl
   booktitle={Eighth Annual Symposium on Combinatorial Search},
   pages={201-205},
   year={2015}
+}
+
+incollection{Tolpin-ECML-Anglican-DemoTrack,
+  year={2015},
+  isbn={978-3-319-23460-1},
+  booktitle={Machine Learning and Knowledge Discovery in Databases},
+  volume={9286},
+  series={Lecture Notes in Computer Science},
+  editor={Bifet, Albert and May, Michael and Zadrozny, Bianca and Gavalda, Ricard and Pedreschi, Dino and Bonchi, Francesco and Cardoso, Jaime and Spiliopoulou, Myra},
+  doi={10.1007/978-3-319-23461-8_36},
+  title={Probabilistic Programming in Anglican},
+  url={http://dx.doi.org/10.1007/978-3-319-23461-8_36},
+  publisher={Springer International Publishing},
+  keywords={Probabilistic programming},
+  author={Tolpin, David and van de Meent, Jan-Willem and Wood, Frank},
+  pages={308-311},
+  language={English}
 }
 
 @inproceedings{vandeMeent-AISTATS-2015,
@@ -1508,6 +1567,15 @@ We show that performing inference in this space can be viewed as rejection sampl
   Title = {A New Approach to Probabilistic Programming Inference},
   Pages = {1024--1032},
   Year = {2014}
+}
+
+inbook{Wood-HMMTH-2014,
+  author={F. Wood and A. Perotte},
+  year= 2014, 
+  chapter={Mixed Membership Classification for Documents with Hierarchically Structured Labels}, 
+  editor = {E. Airoldi, D. Blei, E. Erosheva and S. Fienberg}, 
+  title= {Handbook of Mixed Membership Models and Their Applications}, 
+  publisher= {Chapman and Hall/CRC},
 }
 
 @inproceedings{Neiswanger-AISTATS-2014,
@@ -1602,12 +1670,34 @@ We show that performing inference in this space can be viewed as rejection sampl
   publisher = {IEEE Computer Society},
 }
 
+InProceedings{Elsner-EMNLP-2013,
+  author = {Elsner, M.  and  Goldwater, S.  and  Feldman, N.  and  Wood, F.},
+  title = {A Joint Learning Model of Word Segmentation, Lexical Acquisition, and Phonetic Variability},
+  booktitle = {Proceedings of the 2013 Conference on Empirical Methods in Natural Language Processing},
+  month = {October},
+  year = {2013},
+  address = {Seattle, Washington, USA},
+  publisher = {Association for Computational Linguistics},
+  pages = {42--54},
+}
+
 @inproceedings{vandeMeent-ICML-2013,
   Author = {J.W. van de Meent and J. E. Bronson and R. L. Gonzalez Jr. and F. Wood and C. H. Wiggins},
   Booktitle = {International Conference on Machine Learning},
   Title = {Learning biochemical kinetic models from single-molecule data with hierarchically-coupled hidden {M}arkov models},
   Year = {2013},
   Pages = {361--369}
+}
+
+InProceedings{Elsner-EMNLP-2013,
+  author    = {Elsner, M.  and  Goldwater, S.  and  Feldman, N.  and  Wood, F.},
+  title     = {A Joint Learning Model of Word Segmentation, Lexical Acquisition, and Phonetic Variability},
+  booktitle = {Proceedings of the 2013 Conference on Empirical Methods in Natural Language Processing},
+  month     = {October},
+  year      = {2013},
+  address   = {Seattle, Washington, USA},
+  publisher = {Association for Computational Linguistics},
+  pages     = {42--54},
 }
 
 @inproceedings{vandeMeent-ICML-2013,
@@ -1753,7 +1843,7 @@ We show that performing inference in this space can be viewed as rejection sampl
   Title = {Forgetting Counts : Constant Memory Inference for a Dependent Hierarchical {P}itman-{Y}or Process},
   Year = {2010},Pages = {63--70}
 }
-
+	
 @inproceedings{Gasthaus-DCC-2010,
   Author = {J. Gasthaus and F. Wood and Y.W. Teh},
   Booktitle = {Data Compression Conference},
@@ -1840,6 +1930,14 @@ We show that performing inference in this space can be viewed as rejection sampl
   Title = {A Non-parametric {B}ayesian alternative to spike sorting},
   Volume = {173},
   Year = {2008}
+}
+
+techreport{Wood-TECHREPORT-2008,
+	Author = {F. Wood and D.H. Grollman and K.A. Heller and O.C. Jenkins and M.J. Black},
+	Institution = {Brown University, Department of Computer Science},
+	Number = {CS-08-07},
+	Title = {Incremental Nonparametric {B}ayesian regression},
+	Year = {2008}
 }
 
 @inproceedings{Wood-NIPS-2006,
@@ -1995,14 +2093,4 @@ We show that performing inference in this space can be viewed as rejection sampl
   Title = {Visualization, Virtual Reality, and Animation within the Data Flow Model of Computing},
   Volume = {29},
   Year = {1995}
-}
-
-@unpublished{he-dataset-embodied-ai-2025,
-	title = {PLAICraft: Large-Scale Time-Aligned Vision-Speech-Action Dataset for Embodied AI},
-	author = {Yingchen He and Christian D. Weilbach and Martyna E. Wojciechowska and Yuxuan Zhang and Frank Wood},
-	year = {2025},
-	arxiv = {2505.12707},
-	url = {https://arxiv.org/abs/2505.12707},
-	url_pdf = {https://arxiv.org/pdf/2505.12707.pdf},
-	abstract = {Advances in deep generative modelling have made it increasingly plausible to train human-level embodied agents. Yet progress has been limited by the absence of large-scale, real-time, multi-modal, and socially interactive datasets that reflect the sensory-motor complexity of natural environments. To address this, we present PLAICraft, a novel data collection platform and dataset capturing multiplayer Minecraft interactions across five time-aligned modalities: video, game output audio, microphone input audio, mouse, and keyboard actions. Each modality is logged with millisecond time precision, enabling the study of synchronous, embodied behaviour in a rich, open-ended world. The dataset comprises over 10,000 hours of gameplay from more than 10,000 global participants.\footnote\{We have done a privacy review for the public release of an initial 200-hour subset of the dataset, with plans to release most of the dataset over time.\} Alongside the dataset, we provide an evaluation suite for benchmarking model capabilities in object recognition, spatial awareness, language grounding, and long-term memory. PLAICraft opens a path toward training and evaluating agents that act fluently and purposefully in real time, paving the way for truly embodied artificial intelligence.},
 }
