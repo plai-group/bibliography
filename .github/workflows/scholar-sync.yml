@@ -1,15 +1,14 @@
-name: Sync Google Scholar to BibTeX
+name: Process Scholar Export
 
 on:
-  schedule:
-    # Run every Sunday at 2 AM UTC
-    - cron: '0 2 * * 0'
+  push:
+    paths:
+      - 'scholar_export.bib'
   
-  # Allow manual trigger
   workflow_dispatch:
 
 jobs:
-  sync-scholar:
+  process-export:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,9 +22,9 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install scholarly bibtexparser
+          pip install bibtexparser
       
-      - name: Fetch publications from Google Scholar
+      - name: Process Scholar export
         run: |
           python scripts/sync_scholar.py
       
@@ -34,15 +33,26 @@ jobs:
         run: |
           git diff --exit-code group_publications.bib || echo "changed=true" >> $GITHUB_OUTPUT
       
-      - name: Commit and push if changed
+      - name: Commit updated publications
         if: steps.git-check.outputs.changed == 'true'
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           git add group_publications.bib
-          git commit -m "Auto-sync: Update publications from Google Scholar"
+          git commit -m "Update publications from Scholar export"
           git push
       
       - name: No changes detected
         if: steps.git-check.outputs.changed != 'true'
-        run: echo "No changes to publications"
+        run: echo "✓ No changes to publications"
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Processing Results" >> $GITHUB_STEP_SUMMARY
+          if [ -f "group_publications.bib" ]; then
+            echo "✓ Publications file updated" >> $GITHUB_STEP_SUMMARY
+            echo "Total entries: $(grep -c "^@" group_publications.bib)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Publications file not found" >> $GITHUB_STEP_SUMMARY
+          fi
