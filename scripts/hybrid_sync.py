@@ -244,11 +244,21 @@ def load_existing_bib():
 # ===== MERGE ENTRIES =====
 def merge_entries(existing_db, new_entries):
     existing_identifiers = {}
+    
     for i, entry in enumerate(existing_db.entries):
         if 'doi' in entry:
-            existing_identifiers[('doi', entry['doi'].lower())] = i
+            doi = entry['doi'].lower()
+            existing_identifiers[('doi', doi)] = i
+            
+            # Check if DOI is actually an arXiv DOI (10.48550/arXiv.XXXX)
+            arxiv_match = re.search(r'10\.48550/arxiv\.(\d{4}\.\d+)', doi, re.IGNORECASE)
+            if arxiv_match:
+                arxiv_id = arxiv_match.group(1)
+                existing_identifiers[('arxiv', arxiv_id.lower())] = i
+        
         if 'arxiv' in entry:
-            existing_identifiers[('arxiv', entry['arxiv'].lower())] = i
+            arxiv_id = entry['arxiv'].lower()
+            existing_identifiers[('arxiv', arxiv_id)] = i
     
     added = 0
     updated = 0
