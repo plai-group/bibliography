@@ -19,7 +19,7 @@ def identify_input(input_str):
     
     if input_str.startswith('http://') or input_str.startswith('https://'):
         if 'arxiv.org' in input_str:
-            match = re.search(r'arxiv\.org/(?:abs|pdf)/(\d+\.\d+)', input_str)
+            match = re.search(r'arxiv\.org/(?:abs|pdf)/(\d{4}\.\d+)', input_str)
             if match:
                 return 'arxiv', match.group(1)
         elif 'doi.org' in input_str:
@@ -125,7 +125,9 @@ def fetch_from_crossref(doi):
 
 # ===== FETCH FROM ARXIV =====
 def fetch_from_arxiv(arxiv_id):
-    arxiv_id = arxiv_id.replace('v', '')
+    arxiv_id = arxiv_id.replace('v', '').strip()
+    
+    print(f"    Fetching from arXiv API: {arxiv_id}")
     
     url = f"http://export.arxiv.org/api/query?id_list={arxiv_id}"
     
@@ -133,6 +135,7 @@ def fetch_from_arxiv(arxiv_id):
         response = requests.get(url, timeout=10)
         
         if response.status_code != 200:
+            print(f"    HTTP error: {response.status_code}")
             return None
         
         import xml.etree.ElementTree as ET
@@ -142,6 +145,7 @@ def fetch_from_arxiv(arxiv_id):
         entry = root.find('atom:entry', ns)
         
         if entry is None:
+            print(f"    No entry found in arXiv response")
             return None
         
         title = entry.find('atom:title', ns)
