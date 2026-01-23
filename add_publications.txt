@@ -1,3 +1,2 @@
 # Add new publications here
 # Insert their DOI, arXiv ID, or URL below (one publication per line)
-https://arxiv.org/abs/2505.12707
