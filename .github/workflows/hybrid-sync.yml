@@ -3,7 +3,7 @@ name: Add Publications
 on:
   push:
     paths:
-      - 'publications_to_add.txt'
+      - 'add_publications.txt'
   
   workflow_dispatch:
 
@@ -29,14 +29,14 @@ jobs:
       - name: Check for changes
         id: check
         run: |
-          git diff --exit-code group_publications.bib publications_to_add.txt || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --exit-code group_publications.bib add_publications.txt || echo "changed=true" >> $GITHUB_OUTPUT
       
       - name: Commit updates
         if: steps.check.outputs.changed == 'true'
         run: |
           git config user.name "PLAI Bot"
           git config user.email "plai.execassist@gmail.com"
-          git add group_publications.bib publications_to_add.txt
+          git add group_publications.bib add_publications.txt
           git commit -m "Add/update publications"
           git push
       
