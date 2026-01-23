@@ -24,7 +24,7 @@ jobs:
         run: pip install requests bibtexparser
       
       - name: Process publications
-        run: python scripts/hybrid_sync.py
+        run: python scripts/sync_trigger.py
       
       - name: Check for changes
         id: check
