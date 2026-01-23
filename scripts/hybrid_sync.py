@@ -109,7 +109,7 @@ def load_inputs():
 # ===== FETCH FROM CROSSREF =====
 def fetch_from_crossref(doi):
     url = f"https://api.crossref.org/works/{doi}"
-    headers = {'User-Agent': 'PLAI-Bibliography/1.0 (mailto:plai@cs.ubc.ca)'}
+    headers = {'User-Agent': 'PLAI-Bibliography/1.0 (mailto:plai.execassist@gmail.com)'}
     
     try:
         response = requests.get(url, headers=headers, timeout=10)
