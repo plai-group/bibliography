@@ -11,7 +11,7 @@ Start by:
    
 Sit back and watch as:
 
-2. Your commit triggers  [`.github/workflows/add-publications.yml`](.github/workflows/add-publications.yml) to run [`hybrid_sync.py`](https://github.com/plai-group/bibliography/blob/master/scripts/hybrid_sync.py), which will:
+2. Your commit triggers  [`.github/workflows/add-publications.yml`](.github/workflows/add-publications.yml) to run [`sync_trigger.py`](https://github.com/plai-group/bibliography/blob/master/scripts/sync_trigger.py), which will:
 
    - Fetch metadata from the Crossref or arXiv  
    - Read [`group_publications.bib`](group_publications.bib) to check for duplicates  
