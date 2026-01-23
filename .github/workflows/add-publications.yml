@@ -1,0 +1,48 @@
+name: Add Publications
+
+on:
+  push:
+    paths:
+      - 'add_publications.txt'
+  
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: pip install requests bibtexparser
+      
+      - name: Process publications
+        run: python scripts/hybrid_sync.py
+      
+      - name: Check for changes
+        id: check
+        run: |
+          git diff --exit-code group_publications.bib add_publications.txt || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit updates
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "PLAI Bot"
+          git config user.email "plai.execassist@gmail.com"
+          git add group_publications.bib add_publications.txt
+          git commit -m "Add/update publications"
+          git push
+      
+      - name: Summary
+        if: always()
+        run: |
+          if [ -f "group_publications.bib" ]; then
+            echo "Total publications: $(grep -c '^@' group_publications.bib)" >> $GITHUB_STEP_SUMMARY
+          fi
